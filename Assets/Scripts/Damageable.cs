@@ -13,8 +13,9 @@ public abstract class Damageable : MonoBehaviour
         _currentLife = Life;
     }
 
-    private void Update()
+    protected void Update()
     {
+        
     }
 
     protected void TakeDamage(float damage)

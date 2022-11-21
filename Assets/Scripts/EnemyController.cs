@@ -32,6 +32,8 @@ public class EnemyController : Damageable
 
     private void Update()
     {
+        base.Update();
+        
         MoveToPlayer();
     }
 

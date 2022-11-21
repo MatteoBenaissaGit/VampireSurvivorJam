@@ -52,6 +52,8 @@ public class PlayerController : Damageable
 
     private void Update()
     {
+        base.Update();
+        
         Move();
         EnemyDetection();
         Shoot();
@@ -82,9 +84,10 @@ public class PlayerController : Damageable
     private void EnemyDetection()
     {
         RaycastHit2D[] enemyHits = new RaycastHit2D[]{};
-        Physics2D.CircleCastNonAlloc(transform.position, _detectionRange, Vector2.zero, enemyHits);
+        Physics2D.CircleCastAll(transform.position, _detectionRange, Vector2.zero);
         foreach (RaycastHit2D hit in enemyHits)
         {
+            Debug.Log("cast");
             EnemyController enemyController = hit.collider.gameObject.GetComponent<EnemyController>();
             if (enemyController == null)
             {
@@ -111,9 +114,9 @@ public class PlayerController : Damageable
         //shoot
         if (_closestEnemy != null)
         {
+            Debug.Log("shoot");
             Vector2 bulletDirection = (_closestEnemy.transform.position - transform.position).normalized;
-            BulletController bulletController = new BulletController(bulletDirection);
-            Instantiate(bulletController, transform.position, Quaternion.identity);
+            Instantiate(new BulletController(bulletDirection), transform.position, Quaternion.identity);
         }
     }
 
