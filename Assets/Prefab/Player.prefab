@@ -194,13 +194,27 @@ MonoBehaviour:
       m_Calls: []
   _speed: 5
   _detectionRange: 9.6
-  _shootCooldownSeconds: 1
-  _attackCooldownSeconds: 0
+  _weaponPickupRange: 2.8
+  _attackCooldownSeconds: 0.4
+  _experienceNecessaryForBaseLevel: 0
+  _experienceNecessaryMultiplier: 0
   _attackPrefab: {fileID: 8515738212337399059, guid: 56542d6f947e2f843b237e7ef5a9ddc8, type: 3}
-  _bulletPrefab: {fileID: 425504579701849938, guid: f814c40998b38f0499967ddbf29a0253, type: 3}
   _isMoving: 0
-  _canShoot: 0
   _canAttack: 1
+  _currentWeaponList: []
+  CurrentExperience: 0
+  ExperienceNecessary: 0
+  CurrentLevel: 0
+  OnExperienceChange:
+    m_PersistentCalls:
+      m_Calls: []
+  OnLevelUp:
+    m_PersistentCalls:
+      m_Calls: []
+  CurrentMoney: 0
+  OnMoneyChange:
+    m_PersistentCalls:
+      m_Calls: []
 --- !u!114 &1651045689868647382
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -213,7 +227,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: d90712f2a6f39664ba1e7c9a9f5d4d11, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _LifeBar: {fileID: 0}
+  _lifeBar: {fileID: 0}
+  _experienceBar: {fileID: 0}
+  _levelText: {fileID: 0}
+  _moneyText: {fileID: 0}
 --- !u!50 &8484599583725040527
 Rigidbody2D:
   serializedVersion: 4

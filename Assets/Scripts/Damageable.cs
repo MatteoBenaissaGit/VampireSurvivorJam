@@ -14,7 +14,7 @@ public abstract class Damageable : MonoBehaviour
     [SerializeField, ReadOnly] public float CurrentLife;
     [SerializeField, ReadOnly] public bool IsInvincible;
 
-    public UnityEvent OnLifeChange = new UnityEvent();
+    [HideInInspector] public UnityEvent OnLifeChange = new UnityEvent();
 
     protected void Start()
     {
@@ -45,7 +45,7 @@ public abstract class Damageable : MonoBehaviour
         StartCoroutine(Invincibility());
     }
 
-    protected void Die()
+    protected virtual void Die()
     {
         Destroy(gameObject);
     }

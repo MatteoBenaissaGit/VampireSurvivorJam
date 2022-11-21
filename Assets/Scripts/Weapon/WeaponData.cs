@@ -10,5 +10,6 @@ namespace DefaultNamespace
         public Sprite PlayerWeaponSprite;
         public Damager Projectile;
         public float Cooldown;
+        public float MoneyCost;
     }
 }

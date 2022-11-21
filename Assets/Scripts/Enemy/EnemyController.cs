@@ -12,6 +12,11 @@ public class EnemyController : Damageable
     [SerializeField, Range(0,10)] private float _speed;
     [SerializeField] private float _attackDamage;
     [SerializeField, Range(0, 10)] private float _attackRange;
+    [SerializeField] private int _experienceGiven;
+    [SerializeField] private int _moneyGiven;
+
+    [Header("References")] 
+    [SerializeField] private ObjectMoney _moneyPrefab;
 
     #endregion
 
@@ -79,6 +84,20 @@ public class EnemyController : Damageable
         {
             _playerController.GetComponent<Damageable>().TakeDamage(_attackDamage);
         }
+    }
+
+    protected override void Die()
+    {
+        _playerController.AddExperience(_experienceGiven);
+        DropMoney();
+        
+        base.Die();
+    }
+
+    private void DropMoney()
+    {
+        ObjectMoney money = Instantiate(_moneyPrefab,transform.position, Quaternion.identity);
+        money.Value = _moneyGiven;
     }
 
     #endregion

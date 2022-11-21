@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using DefaultNamespace;
 using UnityEngine;
+using UnityEngine.Events;
 
 [RequireComponent(typeof(Rigidbody2D))]
 [RequireComponent(typeof(CapsuleCollider2D))]
@@ -28,6 +29,10 @@ public class PlayerController : Damageable
     [SerializeField, Range(0, 50)] private float _weaponPickupRange;
     [SerializeField, Range(0, 3)] private float _attackCooldownSeconds;
 
+    [Header("Experience")] 
+    [SerializeField] private int _experienceNecessaryForBaseLevel;
+    [SerializeField,Range(1,2)] private float _experienceNecessaryMultiplier;
+    
     [Header("References")] 
     [SerializeField] private Damager _attackPrefab;
 
@@ -36,17 +41,31 @@ public class PlayerController : Damageable
     #region Variables
 
     [Header("Debug")]
+    //references
     private Rigidbody2D _rigidbody2D;
+    
+    //move
     [SerializeField, ReadOnly] private bool _isMoving;
     
+    //attack & enemy
     [SerializeField] private bool _canAttack = true;
-    
     private float _attackTime;
     private List<EnemyController> _enemyInRangeList = new List<EnemyController>();
     private EnemyController _closestEnemy;
     
     //weapons
     [SerializeField, ReadOnly] private List<Weapon> _currentWeaponList = new List<Weapon>();
+    
+    //experience
+    [SerializeField, ReadOnly] public int CurrentExperience = 0;
+    [SerializeField, ReadOnly] public int ExperienceNecessary = 0;
+    [SerializeField, ReadOnly] public int CurrentLevel = 0;
+    [HideInInspector] public UnityEvent OnExperienceChange = new UnityEvent();
+    [HideInInspector] public UnityEvent OnLevelUp = new UnityEvent();
+    
+    //money
+    [SerializeField, ReadOnly] public int CurrentMoney = 0;
+    [HideInInspector] public UnityEvent OnMoneyChange = new UnityEvent();
     
     #endregion
 
@@ -57,6 +76,7 @@ public class PlayerController : Damageable
         base.Start();
 
         _rigidbody2D = GetComponent<Rigidbody2D>();
+        ExperienceNecessary = _experienceNecessaryForBaseLevel;
     }
 
     private void Update()
@@ -166,15 +186,15 @@ public class PlayerController : Damageable
 
     #endregion
 
-    #region Pick up Weapon
+    #region Pick up Weapon & Money
 
     private void PickupWeapon()
     {
-        RaycastHit2D[] weaponsHit = Physics2D.CircleCastAll(transform.position, _weaponPickupRange, transform.forward, 0);
-        foreach (RaycastHit2D hit in weaponsHit)
+        RaycastHit2D[] Hits = Physics2D.CircleCastAll(transform.position, _weaponPickupRange, transform.forward, 0);
+        foreach (RaycastHit2D hit in Hits)
         {
             ObjectWeapon objectWeapon = hit.collider.gameObject.GetComponent<ObjectWeapon>();
-            if (objectWeapon != null)
+            if (objectWeapon != null && objectWeapon.CanPickUp())
             {
                 if (_currentWeaponList.Find(x => x.WeaponInfoData == objectWeapon.WeaponData) == false)
                 {
@@ -183,6 +203,13 @@ public class PlayerController : Damageable
                     _currentWeaponList.Add(weapon);
                     Destroy(objectWeapon.gameObject);
                 }
+            }
+            
+            ObjectMoney objectMoney = hit.collider.gameObject.GetComponent<ObjectMoney>();
+            if (objectMoney != null)
+            {
+                AddMoney(objectMoney.Value);
+                Destroy(objectMoney.gameObject);
             }
         }
     }
@@ -194,6 +221,38 @@ public class PlayerController : Damageable
     public override void TakeDamage(float damage)
     {
         base.TakeDamage(damage);
+    }
+
+    #endregion
+
+    #region Experience
+
+    public void AddExperience(int experience)
+    {
+        int newExperience = CurrentExperience + experience;
+        if (newExperience >= ExperienceNecessary)
+        {
+            CurrentLevel++;
+            CurrentExperience = newExperience - ExperienceNecessary;
+            ExperienceNecessary = (int)(ExperienceNecessary * _experienceNecessaryMultiplier);
+            OnLevelUp.Invoke();
+        }
+        else
+        {
+            CurrentExperience = newExperience;
+            OnExperienceChange.Invoke();
+        }
+    }
+
+    #endregion
+
+    #region Money
+
+    private void AddMoney(int money)
+    {
+        int newMoney = CurrentMoney + money;
+        CurrentMoney = newMoney >= 0 ? newMoney : 0;
+        OnMoneyChange.Invoke();
     }
 
     #endregion
