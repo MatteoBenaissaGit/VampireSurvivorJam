@@ -6,9 +6,14 @@ using UnityEngine.UI;
 
 public class PlayerUI : MonoBehaviour
 {
+    private PlayerController _playerController;
+
 
     private Slider _slider;
     private ParticleSystem _particleSyt;
+
+    public int Heal = 5;
+    public int Damage = 5;
 
     public float MoveSpeedBar = 0.5f;
     private float _sliderProgress = 0;
@@ -21,18 +26,19 @@ public class PlayerUI : MonoBehaviour
 
     private void Start()
     {
-        MoveSliderBarDamage(1.5f);
+        _playerController = GetComponent<PlayerController>();
+        MoveSliderBarDamage();
     }
     private void Update()
     {
-        if (_slider.value < _sliderProgress) // a modif quand on aura les Heal 
+        if (_slider.value != (_slider.value + Heal)) // a modif quand on aura les Heal 
         {
             _slider.value += MoveSpeedBar * Time.deltaTime;
             if (!_particleSyt.isPlaying)
                 _particleSyt.Play();
         }
 
-        else if (_slider.value > 0) // a modif quand on aura les Damages
+        else if (_slider.value > (_slider.value - Damage)) // a modif quand on aura les Damages
         {
             _slider.value -= MoveSpeedBar * Time.deltaTime;
             if (!_particleSyt.isPlaying)
@@ -44,12 +50,12 @@ public class PlayerUI : MonoBehaviour
         }
     }
 
-    public void MoveSliderBarHeal(float Heal)
+    public void MoveSliderBarHeal()
     {
         _sliderProgress = _slider.value + Heal;
     }    
 
-    public void MoveSliderBarDamage(float Damage)
+    public void MoveSliderBarDamage()
     {
         _sliderProgress = _slider.value - Damage;
     }
