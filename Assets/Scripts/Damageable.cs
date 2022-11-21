@@ -8,11 +8,11 @@ public abstract class Damageable : MonoBehaviour
     [Header("Damageable")]
     public float Life;
 
-    [SerializeField, ReadOnly] protected float _currentLife;
+    [SerializeField, ReadOnly] public float CurrentLife;
 
     protected void Start()
     {
-        _currentLife = Life;
+        CurrentLife = Life;
     }
 
     protected void Update()
@@ -22,8 +22,10 @@ public abstract class Damageable : MonoBehaviour
 
     public void TakeDamage(float damage)
     {
-        _currentLife -= damage;
-        if (_currentLife <= 0)
+        Debug.Log($"damaged {damage}");
+        CurrentLife -= damage;
+        Debug.Log($"life : {CurrentLife}");
+        if (CurrentLife <= 0)
         {
             Die();
         }

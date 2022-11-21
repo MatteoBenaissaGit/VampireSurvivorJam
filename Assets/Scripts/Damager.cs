@@ -1,4 +1,5 @@
 ﻿using System;
+using DG.Tweening;
 using UnityEngine;
 
 
@@ -22,6 +23,7 @@ public abstract class Damager : MonoBehaviour
 
     protected void Start()
     {
+        
     }
 
     protected void Update()
@@ -42,13 +44,14 @@ public abstract class Damager : MonoBehaviour
     private void OnCollisionEnter2D(Collision2D collision)
     {
         Damageable damageable = collision.collider.gameObject.GetComponent<Damageable>();
-        if (damageable == null || damageable != ParentDamageable)
+        if (damageable != null && damageable != ParentDamageable)
         {
-            return;
+            damageable.TakeDamage(_damage);
         }
-        
-        damageable.TakeDamage(_damage);
-        
-        DestroyObject();
+
+        if (collision.collider.gameObject != ParentDamageable.gameObject)
+        {
+            DestroyObject();
+        }
     }
 }

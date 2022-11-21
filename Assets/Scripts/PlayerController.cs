@@ -33,8 +33,11 @@ public class PlayerController : Damageable
 
     #region Variables
 
+    [Header("Debug")]
     private Rigidbody2D _rigidbody2D;
-    private bool _isMoving;
+    [SerializeField, ReadOnly] private bool _isMoving;
+    [SerializeField] private bool _canShoot;
+    [SerializeField] private bool _canAttack;
     private float _shootTime;
     private List<EnemyController> _enemyInRangeList = new List<EnemyController>();
     private EnemyController _closestEnemy;
@@ -84,6 +87,9 @@ public class PlayerController : Damageable
 
     private void EnemyDetection()
     {
+        _enemyInRangeList.Clear();
+        _closestEnemy = null;
+        
         RaycastHit2D[] enemyHits = Physics2D.CircleCastAll(transform.position, _detectionRange, transform.forward, 0);
         foreach (RaycastHit2D hit in enemyHits)
         {
@@ -108,7 +114,7 @@ public class PlayerController : Damageable
     {
         //cooldown
         _shootTime -= Time.deltaTime;
-        if (_shootTime >= 0)
+        if (_shootTime >= 0 || _canShoot == false)
         {
             return;
         }
@@ -118,10 +124,9 @@ public class PlayerController : Damageable
         //shoot
         if (_closestEnemy != null)
         {
-            Debug.Log("shoot");
             Vector3 position = transform.position;
             Vector2 bulletDirection = (_closestEnemy.transform.position - position).normalized;
-            Vector2 spawnPosition = new Vector2(position.x + bulletDirection.x * 2, position.y + bulletDirection.y * 2);
+            Vector2 spawnPosition = new Vector2(position.x + bulletDirection.x*0.5f, position.y + bulletDirection.y*0.5f);
             
             BulletController bullet = Instantiate(_bulletPrefab, spawnPosition, Quaternion.identity);
             bullet.Set(bulletDirection, this);
@@ -143,7 +148,12 @@ public class PlayerController : Damageable
 
         if (_closestEnemy != null)
         {
-            Gizmos.color = Color.black;
+            foreach (EnemyController enemy  in _enemyInRangeList)
+            {
+                Gizmos.color = Color.white;
+                Gizmos.DrawLine(position, enemy.transform.position);
+            }
+            Gizmos.color = Color.magenta;
             Gizmos.DrawLine(position, _closestEnemy.transform.position);
         }
     }
