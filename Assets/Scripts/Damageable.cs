@@ -1,6 +1,8 @@
+using System;
 using UnityEngine;
 
 [RequireComponent(typeof(SpriteRenderer))]
+[RequireComponent(typeof(Collider2D))]
 public abstract class Damageable : MonoBehaviour
 {
     [Header("Damageable")]
@@ -18,7 +20,7 @@ public abstract class Damageable : MonoBehaviour
         
     }
 
-    protected void TakeDamage(float damage)
+    public void TakeDamage(float damage)
     {
         _currentLife -= damage;
         if (_currentLife <= 0)
@@ -30,5 +32,16 @@ public abstract class Damageable : MonoBehaviour
     protected void Die()
     {
         Destroy(gameObject);
+    }
+
+    private void OnCollisionEnter2D(Collision2D collision)
+    {
+        Damager damager = collision.collider.gameObject.GetComponent<Damager>();
+        if (damager == null)
+        {
+            return;
+        }
+        
+        
     }
 }

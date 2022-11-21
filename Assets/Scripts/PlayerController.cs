@@ -17,16 +17,17 @@ public class PlayerController : Damageable
     }
 
     #endregion
-    
+
     #region Serialized Fields
 
-    [Header("Player")] 
-    [SerializeField, Range(0, 10)] private float _speed;
+    [Header("Player")] [SerializeField, Range(0, 10)]
+    private float _speed;
+
     [SerializeField, Range(0, 3)] private float _shootCooldownSeconds;
     [SerializeField, Range(0, 50)] private float _detectionRange;
 
-    [Header("References")] 
-    [SerializeField] private BulletController _bulletPrefab;
+    [Header("References")] [SerializeField]
+    private BulletController _bulletPrefab;
 
     #endregion
 
@@ -35,7 +36,7 @@ public class PlayerController : Damageable
     private Rigidbody2D _rigidbody2D;
     private bool _isMoving;
     private float _shootTime;
-    private List<EnemyController> _enemyInRangeList;
+    private List<EnemyController> _enemyInRangeList = new List<EnemyController>();
     private EnemyController _closestEnemy;
 
     #endregion
@@ -45,7 +46,7 @@ public class PlayerController : Damageable
     private void Start()
     {
         base.Start();
-        
+
         _rigidbody2D = GetComponent<Rigidbody2D>();
         _shootTime = _shootCooldownSeconds;
     }
@@ -53,14 +54,14 @@ public class PlayerController : Damageable
     private void Update()
     {
         base.Update();
-        
+
         Move();
         EnemyDetection();
         Shoot();
     }
 
     #endregion
-    
+
     #region Methods
 
     private void Move()
@@ -69,7 +70,7 @@ public class PlayerController : Damageable
         Vector2 movement = new Vector2(Input.GetAxisRaw("Horizontal"), Input.GetAxisRaw("Vertical"));
         const float deadZone = 0.01f;
         _isMoving = movement.sqrMagnitude > deadZone;
-        
+
         if (_isMoving == false)
         {
             _rigidbody2D.velocity = Vector2.zero;
@@ -83,24 +84,26 @@ public class PlayerController : Damageable
 
     private void EnemyDetection()
     {
-        RaycastHit2D[] enemyHits = new RaycastHit2D[]{};
-        Physics2D.CircleCastAll(transform.position, _detectionRange, Vector2.zero);
+        RaycastHit2D[] enemyHits = Physics2D.CircleCastAll(transform.position, _detectionRange, transform.forward, 0);
         foreach (RaycastHit2D hit in enemyHits)
         {
-            Debug.Log("cast");
             EnemyController enemyController = hit.collider.gameObject.GetComponent<EnemyController>();
-            if (enemyController == null)
+            if (enemyController != null)
             {
-                continue;
+                _enemyInRangeList.Add(enemyController);
             }
-            
-            _enemyInRangeList.Add(enemyController);
-            _closestEnemy = _enemyInRangeList
-                .OrderBy(x => Vector3.Distance(transform.position, x.transform.position))
-                .FirstOrDefault();
         }
+
+        if (_enemyInRangeList.Count <= 0)
+        {
+            return;
+        }
+
+        _closestEnemy = _enemyInRangeList
+            .OrderBy(x => Vector3.Distance(transform.position, x.transform.position))
+            .FirstOrDefault();
     }
-    
+
     private void Shoot()
     {
         //cooldown
@@ -109,14 +112,19 @@ public class PlayerController : Damageable
         {
             return;
         }
+
         _shootTime = _shootCooldownSeconds;
-        
+
         //shoot
         if (_closestEnemy != null)
         {
             Debug.Log("shoot");
-            Vector2 bulletDirection = (_closestEnemy.transform.position - transform.position).normalized;
-            Instantiate(new BulletController(bulletDirection), transform.position, Quaternion.identity);
+            Vector3 position = transform.position;
+            Vector2 bulletDirection = (_closestEnemy.transform.position - position).normalized;
+            Vector2 spawnPosition = new Vector2(position.x + bulletDirection.x * 2, position.y + bulletDirection.y * 2);
+            
+            BulletController bullet = Instantiate(_bulletPrefab, spawnPosition, Quaternion.identity);
+            bullet.Set(bulletDirection, this);
         }
     }
 
@@ -128,8 +136,16 @@ public class PlayerController : Damageable
 
     private void OnDrawGizmos()
     {
+        Vector3 position = transform.position;
+
         Gizmos.color = Color.red;
-        Gizmos.DrawWireSphere(transform.position, _detectionRange);
+        Gizmos.DrawWireSphere(position, _detectionRange);
+
+        if (_closestEnemy != null)
+        {
+            Gizmos.color = Color.black;
+            Gizmos.DrawLine(position, _closestEnemy.transform.position);
+        }
     }
 
 #endif
