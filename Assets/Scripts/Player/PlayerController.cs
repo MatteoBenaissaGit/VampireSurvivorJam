@@ -175,11 +175,11 @@ public class PlayerController : Damageable
             if (_closestEnemy != null)
             {
                 Vector3 position = transform.position;
-                Vector2 bulletDirection = (_closestEnemy.transform.position - position).normalized;
-                Vector2 spawnPosition = new Vector2(position.x + bulletDirection.x*0.5f, position.y + bulletDirection.y*0.5f);
+                Vector2 shootDirection = (_closestEnemy.transform.position - position).normalized;
+                Vector2 spawnPosition = new Vector2(position.x + shootDirection.x*0.5f, position.y + shootDirection.y*0.5f);
             
-                Damager bullet = Instantiate(weapon.WeaponInfoData.Projectile, spawnPosition, Quaternion.identity);
-                bullet.Set(bulletDirection, this);
+                Damager projectile = Instantiate(weapon.WeaponInfoData.Projectile, spawnPosition, Quaternion.identity);
+                projectile.Set(shootDirection, this);
             }
         }
     }
@@ -201,6 +201,7 @@ public class PlayerController : Damageable
                     Weapon weapon = gameObject.AddComponent<Weapon>();
                     weapon.WeaponInfoData = objectWeapon.WeaponData;
                     _currentWeaponList.Add(weapon);
+                    AddMoney(-objectWeapon.WeaponData.MoneyCost);
                     Destroy(objectWeapon.gameObject);
                 }
             }

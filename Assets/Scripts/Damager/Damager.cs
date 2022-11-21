@@ -54,7 +54,9 @@ public abstract class Damager : MonoBehaviour
     protected virtual void OnTriggerEnter2D(Collider2D collider)
     {
         Damageable damageable = collider.gameObject.GetComponent<Damageable>();
-        if (damageable != null && damageable != ParentDamageable && _touchedDamageable.Contains(damageable) == false)
+        if (damageable != null &&
+            damageable != ParentDamageable &&
+            _touchedDamageable.Contains(damageable) == false)
         {
             DamageEnemy(damageable);
         }

@@ -8,8 +8,9 @@ namespace DefaultNamespace
         public string Id;
         public string DisplayName;
         public Sprite PlayerWeaponSprite;
+        public Sprite PlayerWeaponIcon;
         public Damager Projectile;
         public float Cooldown;
-        public float MoneyCost;
+        public int MoneyCost;
     }
 }

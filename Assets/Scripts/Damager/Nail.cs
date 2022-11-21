@@ -17,8 +17,9 @@ public class Nail : Damager
     protected override void OnTriggerEnter2D(Collider2D collider)
     {
         base.OnTriggerEnter2D(collider);
-        
-        if (collider.gameObject != ParentDamageable.gameObject)
+
+        if (collider.gameObject != ParentDamageable.gameObject &&
+            collider.gameObject.GetComponent<Damager>() == false)
         {
             DestroyObject();
         }
