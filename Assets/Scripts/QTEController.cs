@@ -34,6 +34,8 @@ public class QTEController : MonoBehaviour
         _QTE_Middle.fillAmount = _distance + _width;
         _moveBar.transform.DOMoveX(_xStart + _xEnd, _speedBar);
 
+        // a verif pour que lorsque le joueur le fait il y a le refroisissement 
+
         if (_moveBar.transform.position.x >= _QTE_Top.fillAmount && _moveBar.transform.position.x <= _QTE_Middle.fillAmount)
         {
             _moveBar.transform.DOMoveX(_xEnd - _xStart, _speedBar);
