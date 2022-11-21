@@ -56,15 +56,13 @@ public abstract class Damager : MonoBehaviour
         Damageable damageable = collider.gameObject.GetComponent<Damageable>();
         if (damageable != null && damageable != ParentDamageable && _touchedDamageable.Contains(damageable) == false)
         {
-            _touchedDamageable.Add(damageable);
-            damageable.TakeDamage(_damage);
-            
-            //enemy
-            EnemyController enemy = damageable.GetComponent<EnemyController>();
-            if (enemy != null)
-            {
-                enemy.GetPushed();
-            }
+            DamageEnemy(damageable);
         }
+    }
+
+    protected virtual void DamageEnemy(Damageable damageable)
+    {
+        _touchedDamageable.Add(damageable);
+        damageable.TakeDamage(_damage);
     }
 }

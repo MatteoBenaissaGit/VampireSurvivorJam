@@ -1,5 +1,7 @@
 using System;
+using System.Collections;
 using UnityEngine;
+using UnityEngine.Events;
 
 [RequireComponent(typeof(SpriteRenderer))]
 [RequireComponent(typeof(Collider2D))]
@@ -7,8 +9,12 @@ public abstract class Damageable : MonoBehaviour
 {
     [Header("Damageable")]
     public float Life;
+    [Range(0,5)] public float InvincibilityTimeAfterHit;
 
     [SerializeField, ReadOnly] public float CurrentLife;
+    [SerializeField, ReadOnly] public bool IsInvincible;
+
+    public UnityEvent OnLifeChange = new UnityEvent();
 
     protected void Start()
     {
@@ -20,18 +26,34 @@ public abstract class Damageable : MonoBehaviour
         
     }
 
-    public void TakeDamage(float damage)
+    public virtual void TakeDamage(float damage)
     {
+        if (IsInvincible)
+        {
+            return;
+        }
+        
         CurrentLife -= damage;
+        OnLifeChange.Invoke();
+        
         if (CurrentLife <= 0)
         {
             Die();
         }
+
+        IsInvincible = true;
+        StartCoroutine(Invincibility());
     }
 
     protected void Die()
     {
         Destroy(gameObject);
+    }
+
+    private IEnumerator Invincibility()
+    {
+        yield return new WaitForSeconds(InvincibilityTimeAfterHit);
+        IsInvincible = false;
     }
 
     private void OnCollisionEnter2D(Collision2D collision)

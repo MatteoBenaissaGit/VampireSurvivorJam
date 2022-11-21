@@ -1,7 +1,7 @@
 using DG.Tweening;
 using UnityEngine;
 
-public class Bullet : Damager
+public class Nail : Damager
 {
     private void Start()
     {

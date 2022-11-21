@@ -212,9 +212,12 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   Life: 20
+  InvincibilityTimeAfterHit: 0
   CurrentLife: 0
+  IsInvincible: 0
   _speed: 2.1
   _attackDamage: 5
+  _attackRange: 1.85
 --- !u!114 &5721237461589754046
 MonoBehaviour:
   m_ObjectHideFlags: 0

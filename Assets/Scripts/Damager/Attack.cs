@@ -15,4 +15,16 @@ public class Attack : Damager
 
         _rigidbody2D.velocity = ParentDamageable.GetComponent<Rigidbody2D>().velocity;
     }
+
+    protected override void DamageEnemy(Damageable damageable)
+    {
+        base.DamageEnemy(damageable);
+        
+        //enemy
+        EnemyController enemy = damageable.GetComponent<EnemyController>();
+        if (enemy != null)
+        {
+            enemy.GetPushed();
+        }
+    }
 }

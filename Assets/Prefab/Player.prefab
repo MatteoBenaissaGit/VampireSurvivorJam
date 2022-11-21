@@ -186,7 +186,12 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   Life: 100
+  InvincibilityTimeAfterHit: 2
   CurrentLife: 0
+  IsInvincible: 0
+  OnLifeChange:
+    m_PersistentCalls:
+      m_Calls: []
   _speed: 5
   _detectionRange: 9.6
   _shootCooldownSeconds: 1
@@ -195,7 +200,7 @@ MonoBehaviour:
   _bulletPrefab: {fileID: 425504579701849938, guid: f814c40998b38f0499967ddbf29a0253, type: 3}
   _isMoving: 0
   _canShoot: 0
-  _canAttack: 0
+  _canAttack: 1
 --- !u!114 &1651045689868647382
 MonoBehaviour:
   m_ObjectHideFlags: 0

@@ -11,6 +11,7 @@ public class EnemyController : Damageable
     [Header("Enemy")] 
     [SerializeField, Range(0,10)] private float _speed;
     [SerializeField] private float _attackDamage;
+    [SerializeField, Range(0, 10)] private float _attackRange;
 
     #endregion
 
@@ -38,6 +39,7 @@ public class EnemyController : Damageable
         base.Update();
         
         MoveToPlayer();
+        AttackPlayer();
     }
 
     #endregion
@@ -70,6 +72,28 @@ public class EnemyController : Damageable
         yield return new WaitForSeconds(0.4f);
         _isPushed = false;
     }
+
+    private void AttackPlayer()
+    {
+        if (Vector3.Distance(transform.position, _playerController.transform.position) < _attackRange)
+        {
+            _playerController.GetComponent<Damageable>().TakeDamage(_attackDamage);
+        }
+    }
+
+    #endregion
+
+    #region Gizmos
+
+#if UNITY_EDITOR
+
+    private void OnDrawGizmos()
+    {
+        Gizmos.color = Color.green;
+        Gizmos.DrawWireSphere(transform.position, _attackRange);
+    }
+
+#endif
 
     #endregion
 }
