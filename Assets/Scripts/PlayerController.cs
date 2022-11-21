@@ -20,14 +20,15 @@ public class PlayerController : Damageable
 
     #region Serialized Fields
 
-    [Header("Player")] [SerializeField, Range(0, 10)]
-    private float _speed;
-
-    [SerializeField, Range(0, 3)] private float _shootCooldownSeconds;
+    [Header("Player")] 
+    [SerializeField, Range(0, 10)] private float _speed;
     [SerializeField, Range(0, 50)] private float _detectionRange;
+    [SerializeField, Range(0, 3)] private float _shootCooldownSeconds;
+    [SerializeField, Range(0, 3)] private float _attackCooldownSeconds;
 
-    [Header("References")] [SerializeField]
-    private BulletController _bulletPrefab;
+    [Header("References")] 
+    [SerializeField] private Damager _attackPrefab;
+    [SerializeField] private Damager _bulletPrefab;
 
     #endregion
 
@@ -37,8 +38,9 @@ public class PlayerController : Damageable
     private Rigidbody2D _rigidbody2D;
     [SerializeField, ReadOnly] private bool _isMoving;
     [SerializeField] private bool _canShoot;
-    [SerializeField] private bool _canAttack;
+    [SerializeField] private bool _canAttack = true;
     private float _shootTime;
+    private float _attackTime;
     private List<EnemyController> _enemyInRangeList = new List<EnemyController>();
     private EnemyController _closestEnemy;
 
@@ -61,11 +63,12 @@ public class PlayerController : Damageable
         Move();
         EnemyDetection();
         Shoot();
+        Attack();
     }
 
     #endregion
 
-    #region Methods
+    #region Movement & EnemyDetection
 
     private void Move()
     {
@@ -110,6 +113,29 @@ public class PlayerController : Damageable
             .FirstOrDefault();
     }
 
+    #endregion
+    
+    #region Attack
+
+    private void Attack()
+    {
+        //cooldown
+        _attackTime -= Time.deltaTime;
+        if (_attackTime >= 0 || _canAttack == false || Input.GetMouseButtonDown(0) == false)
+        {
+            return;
+        }
+        _attackTime = _attackCooldownSeconds;
+
+        Vector2 position = (Vector2)transform.position;
+        Vector2 mousePosition = Camera.main.ScreenToWorldPoint(Input.mousePosition);
+        Vector2 direction = (mousePosition - position).normalized;
+        Vector2 spawnPosition = position + direction * 2f;
+        
+        Damager attack = Instantiate(_attackPrefab, spawnPosition, Quaternion.identity);
+        attack.Set(direction,this);
+    }
+    
     private void Shoot()
     {
         //cooldown
@@ -128,7 +154,7 @@ public class PlayerController : Damageable
             Vector2 bulletDirection = (_closestEnemy.transform.position - position).normalized;
             Vector2 spawnPosition = new Vector2(position.x + bulletDirection.x*0.5f, position.y + bulletDirection.y*0.5f);
             
-            BulletController bullet = Instantiate(_bulletPrefab, spawnPosition, Quaternion.identity);
+            Damager bullet = Instantiate(_bulletPrefab, spawnPosition, Quaternion.identity);
             bullet.Set(bulletDirection, this);
         }
     }

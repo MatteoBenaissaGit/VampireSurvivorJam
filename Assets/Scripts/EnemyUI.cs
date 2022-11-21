@@ -9,6 +9,7 @@ using UnityEngine.UI;
 public class EnemyUI : MonoBehaviour
 {
     [Header("References")] 
+    [SerializeField] private GameObject _lifeBarParent;
     [SerializeField] private Image _lifeBarImage;
 
     private EnemyController _enemyController;
@@ -27,13 +28,13 @@ public class EnemyUI : MonoBehaviour
     {
         if (_enemyController.CurrentLife >= _enemyController.Life)
         {
-            _lifeBarImage.gameObject.SetActive(false);
+            _lifeBarParent.gameObject.SetActive(false);
             return;
         }
 
-        if (_lifeBarImage.gameObject.activeInHierarchy == false)
+        if (_lifeBarParent.gameObject.activeInHierarchy == false)
         {
-            GameObject lifeBar = _lifeBarImage.gameObject;
+            GameObject lifeBar = _lifeBarParent.gameObject;
             lifeBar.SetActive(true);
             Vector2 baseScale = lifeBar.transform.localScale;
             lifeBar.transform.localScale = Vector3.zero;

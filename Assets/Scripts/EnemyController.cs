@@ -1,4 +1,5 @@
 using System;
+using System.Collections;
 using UnityEngine;
 
 [RequireComponent(typeof(Rigidbody2D))]
@@ -17,6 +18,8 @@ public class EnemyController : Damageable
 
     private PlayerController _playerController;
     private Rigidbody2D _rigidbody2D;
+    private Vector2 _direction;
+    private bool _isPushed;
 
     #endregion
 
@@ -43,8 +46,29 @@ public class EnemyController : Damageable
 
     private void MoveToPlayer()
     {
-        Vector2 direction = (_playerController.transform.position - transform.position).normalized;
-        _rigidbody2D.velocity = direction * _speed;
+        if (_isPushed)
+        {
+            return;
+        }
+        
+        _direction = (_playerController.transform.position - transform.position).normalized;
+        _rigidbody2D.velocity = _direction * _speed;
+    }
+
+    public void GetPushed()
+    {
+        _isPushed = true;
+        StartCoroutine(ResetPush());
+        
+        const float pushForce = 15f;
+        Vector2 force = -_direction * pushForce;
+        _rigidbody2D.velocity = force;
+    }
+
+    private IEnumerator ResetPush()
+    {
+        yield return new WaitForSeconds(0.4f);
+        _isPushed = false;
     }
 
     #endregion

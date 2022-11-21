@@ -22,9 +22,7 @@ public abstract class Damageable : MonoBehaviour
 
     public void TakeDamage(float damage)
     {
-        Debug.Log($"damaged {damage}");
         CurrentLife -= damage;
-        Debug.Log($"life : {CurrentLife}");
         if (CurrentLife <= 0)
         {
             Die();
