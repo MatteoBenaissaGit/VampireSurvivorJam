@@ -37,7 +37,7 @@ public class PlayerController : Damageable
     
     [Header("References")] 
     [SerializeField] private Damager _attackPrefab;
-    [SerializeField] private MMF_Player _hitEffect;
+    [SerializeField] private MMF_Player _hurtEffect;
 
     #endregion
 
@@ -239,7 +239,7 @@ public class PlayerController : Damageable
     {
         if (IsInvincible == false)
         {
-            _hitEffect.PlayFeedbacks();
+            _hurtEffect.PlayFeedbacks();
         }
         base.TakeDamage(damage);
     }

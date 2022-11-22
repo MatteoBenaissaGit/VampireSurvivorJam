@@ -1,6 +1,7 @@
 using System;
 using System.Collections;
 using DG.Tweening;
+using MoreMountains.Feedbacks;
 using Unity.VisualScripting;
 using UnityEngine;
 
@@ -19,6 +20,7 @@ public class EnemyController : Damageable
 
     [Header("References")] 
     [SerializeField] private ObjectMoney _moneyPrefab;
+    [SerializeField] private MMF_Player _hurtEffect;
 
     #endregion
 
@@ -64,6 +66,13 @@ public class EnemyController : Damageable
     #endregion
 
     #region Methods
+
+    public override void TakeDamage(float damage)
+    {
+        _hurtEffect.PlayFeedbacks();
+        
+        base.TakeDamage(damage);
+    }
 
     private void MoveToPlayer()
     {
