@@ -2,6 +2,7 @@ using System;
 using System.Collections.Generic;
 using DefaultNamespace;
 using UnityEngine;
+using UnityEngine.UI;
 using Random = UnityEngine.Random;
 
 public class GameManager : MonoBehaviour
@@ -16,6 +17,7 @@ public class GameManager : MonoBehaviour
     [SerializeField] private UpgradeSlot _firstUpgradeSlot;
     [SerializeField] private UpgradeSlot _secondUpgradeSlot;
     [SerializeField] private UpgradeSlot _thirdUpgradeSlot;
+    [SerializeField] private Image _slotBackground;
 
     private PlayerController _playerController;
 
