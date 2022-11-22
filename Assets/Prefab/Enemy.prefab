@@ -257,6 +257,7 @@ MonoBehaviour:
   _experienceGiven: 10
   _moneyGiven: 100
   _moneyPrefab: {fileID: 4597350373763718263, guid: 49a8c093ee76e1a4c9cc0dd21326535f, type: 3}
+  _hurtEffect: {fileID: 4480262679981008872}
   _distanceToPlayer: 0
 --- !u!114 &5721237461589754046
 MonoBehaviour:
@@ -651,10 +652,47 @@ MonoBehaviour:
       m_PersistentCalls:
         m_Calls: []
   DebugActive: 0
-  FeedbacksList: []
+  FeedbacksList:
+  - rid: 488575096946163712
   KeepPlayModeChanges: 0
   PerformanceMode: 0
   ForceStopFeedbacksOnDisable: 1
   references:
     version: 2
-    RefIds: []
+    RefIds:
+    - rid: 488575096946163712
+      type: {class: MMF_CameraZoom, ns: MoreMountains.Feedbacks, asm: MoreMountains.Feedbacks}
+      data:
+        Active: 1
+        UniqueID: 1543137661
+        Label: Camera Zoom
+        Channel: 0
+        Chance: 100
+        DisplayColor: {r: 0, g: 0, b: 0, a: 1}
+        Timing:
+          TimescaleMode: 0
+          ExcludeFromHoldingPauses: 0
+          ContributeToTotalDuration: 1
+          InitialDelay: 0
+          CooldownDuration: 0
+          InterruptsOnStop: 1
+          NumberOfRepeats: 0
+          RepeatForever: 0
+          DelayBetweenRepeats: 1
+          MMFeedbacksDirectionCondition: 0
+          PlayDirection: 0
+          ConstantIntensity: 0
+          UseIntensityInterval: 0
+          IntensityIntervalMin: 0
+          IntensityIntervalMax: 0
+          Sequence: {fileID: 0}
+          TrackID: 0
+          Quantized: 0
+          TargetBPM: 120
+        Owner: {fileID: 4480262679981008872}
+        DebugActive: 0
+        ZoomMode: 0
+        ZoomFieldOfView: 10
+        ZoomTransitionDuration: 0.5
+        ZoomDuration: 0.5
+        RelativeFieldOfView: 0
