@@ -332,8 +332,11 @@ public class PlayerController : Damageable
         {
             foreach (EnemyController enemy  in _enemyInRangeList)
             {
-                Gizmos.color = Color.white;
-                Gizmos.DrawLine(position, enemy.transform.position);
+                if (enemy != null)
+                {
+                    Gizmos.color = Color.white;
+                    Gizmos.DrawLine(position, enemy.transform.position);
+                }
             }
             Gizmos.color = Color.magenta;
             Gizmos.DrawLine(position, _closestEnemy.transform.position);
