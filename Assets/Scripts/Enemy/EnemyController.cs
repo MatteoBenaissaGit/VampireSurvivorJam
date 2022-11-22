@@ -69,7 +69,10 @@ public class EnemyController : Damageable
 
     public override void TakeDamage(float damage)
     {
-        _hurtEffect.PlayFeedbacks();
+        if (_hurtEffect != null)
+        {
+            _hurtEffect.PlayFeedbacks();
+        }
         
         base.TakeDamage(damage);
     }
