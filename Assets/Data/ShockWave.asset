@@ -17,6 +17,7 @@ MonoBehaviour:
   PlayerWeaponSprite: {fileID: 0}
   PlayerWeaponIcon: {fileID: 0}
   Projectile: {fileID: 776041352617496675, guid: a15ba9a11d0381e409e5daa92de8e929, type: 3}
-  Cooldown: 6
+  Cooldown: 5
   MoneyCost: 200
+  Damage: 5
   DurabilitySeconds: 20

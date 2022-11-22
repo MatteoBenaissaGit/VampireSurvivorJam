@@ -8,19 +8,20 @@ using UnityEngine;
 [RequireComponent(typeof(Collider2D))]
 public abstract class Damager : MonoBehaviour
 {
-    [Header("Damager")] [SerializeField] protected float _damage;
     [SerializeField] protected float _speed;
 
+    protected float _damage;
     private Vector2 _direction;
     protected Rigidbody2D _rigidbody2D;
     public Damageable ParentDamageable;
     protected List<Damageable> _touchedDamageable = new List<Damageable>();
 
-    public virtual void Set(Vector2 direction, Damageable damageable)
+    public virtual void Set(Vector2 direction, Damageable damageable, float damage)
     {
         _direction = direction;
         ParentDamageable = damageable;
         _rigidbody2D = GetComponent<Rigidbody2D>();
+        _damage = damage;
 
         FaceDirection();
     }

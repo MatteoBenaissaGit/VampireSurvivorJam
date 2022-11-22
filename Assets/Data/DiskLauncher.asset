@@ -19,4 +19,5 @@ MonoBehaviour:
   Projectile: {fileID: 4006351185527816233, guid: 394391e01faab5b429cf7152dfad4c1a, type: 3}
   Cooldown: 3
   MoneyCost: 600
+  Damage: 10
   DurabilitySeconds: 30

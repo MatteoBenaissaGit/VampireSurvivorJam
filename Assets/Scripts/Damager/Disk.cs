@@ -14,12 +14,12 @@ public class Disk : Damager
         transform.DOScale(baseScale, 0.25f);
     }
 
-    public override void Set(Vector2 direction, Damageable damageable)
+    public override void Set(Vector2 direction, Damageable damageable, float damage)
     {
         Vector2 position = (Vector2)transform.position;
         Vector2 mousePosition = Camera.main.ScreenToWorldPoint(Input.mousePosition);
         Vector2 newDirection = -(mousePosition - position).normalized;
-        
-        base.Set(newDirection, damageable);
+
+        base.Set(newDirection, damageable, damage);
     }
 }

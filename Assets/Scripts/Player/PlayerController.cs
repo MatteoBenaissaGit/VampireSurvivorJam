@@ -24,10 +24,11 @@ public class PlayerController : Damageable
     #region Serialized Fields
 
     [Header("Player")] 
-    [SerializeField, Range(0, 10)] private float _speed;
+    [SerializeField, Range(0, 10)] public float Speed;
     [SerializeField, Range(0, 50)] private float _detectionRange;
     [SerializeField, Range(0, 50)] private float _weaponPickupRange;
     [SerializeField, Range(0, 3)] private float _attackCooldownSeconds;
+    public float AttackDamage;
 
     [Header("Experience")] 
     [SerializeField] private int _experienceNecessaryForBaseLevel;
@@ -109,7 +110,7 @@ public class PlayerController : Damageable
 
         //apply movement
         movement = movement.normalized;
-        _rigidbody2D.velocity = movement * _speed;
+        _rigidbody2D.velocity = movement * Speed;
     }
 
     private void EnemyDetection()
@@ -157,7 +158,7 @@ public class PlayerController : Damageable
         Vector2 spawnPosition = position + direction * 2f;
         
         Damager attack = Instantiate(_attackPrefab, spawnPosition, Quaternion.identity);
-        attack.Set(direction,this);
+        attack.Set(direction,this, AttackDamage);
     }
     
     private void Shoot()
@@ -169,7 +170,8 @@ public class PlayerController : Damageable
                 return;
             }
 
-            weapon.ShootCooldown = weapon.WeaponInfoData.Cooldown;
+            Debug.Log(weapon.WeaponInfo.Cooldown);
+            weapon.ShootCooldown = weapon.WeaponInfo.Cooldown;
 
             //shoot
             if (_closestEnemy != null)
@@ -178,8 +180,8 @@ public class PlayerController : Damageable
                 Vector2 shootDirection = (_closestEnemy.transform.position - position).normalized;
                 Vector2 spawnPosition = new Vector2(position.x + shootDirection.x*0.5f, position.y + shootDirection.y*0.5f);
             
-                Damager projectile = Instantiate(weapon.WeaponInfoData.Projectile, spawnPosition, Quaternion.identity);
-                projectile.Set(shootDirection, this);
+                Damager projectile = Instantiate(weapon.WeaponInfo.Projectile, spawnPosition, Quaternion.identity);
+                projectile.Set(shootDirection, this, weapon.WeaponInfo.Damage);
             }
         }
     }
@@ -196,11 +198,12 @@ public class PlayerController : Damageable
             ObjectWeapon objectWeapon = hit.collider.gameObject.GetComponent<ObjectWeapon>();
             if (objectWeapon != null && objectWeapon.CanPickUp())
             {
-                if (CurrentWeaponList.Find(x => x.WeaponInfoData == objectWeapon.WeaponData) == false &&
+                if (CurrentWeaponList.Find(x => x.WeaponDataReference == objectWeapon.WeaponData) == false &&
                     CurrentWeaponList.Count < 2)
                 {
                     Weapon weapon = gameObject.AddComponent<Weapon>();
-                    weapon.WeaponInfoData = objectWeapon.WeaponData;
+                    weapon.WeaponDataReference = objectWeapon.WeaponData;
+                    weapon.Set();
                     CurrentWeaponList.Add(weapon);
                     AddMoney(-objectWeapon.WeaponData.MoneyCost);
                     Destroy(objectWeapon.gameObject);

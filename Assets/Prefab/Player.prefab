@@ -1630,12 +1630,13 @@ MonoBehaviour:
   OnLifeChange:
     m_PersistentCalls:
       m_Calls: []
-  _speed: 5
+  Speed: 4
   _detectionRange: 9.6
   _weaponPickupRange: 1.6
   _attackCooldownSeconds: 0.4
-  _experienceNecessaryForBaseLevel: 0
-  _experienceNecessaryMultiplier: 0
+  AttackDamage: 5
+  _experienceNecessaryForBaseLevel: 100
+  _experienceNecessaryMultiplier: 1.1
   _attackPrefab: {fileID: 8515738212337399059, guid: 56542d6f947e2f843b237e7ef5a9ddc8, type: 3}
   _isMoving: 0
   _canAttack: 1
@@ -1679,6 +1680,7 @@ MonoBehaviour:
     Cursor: {fileID: 3465914446659704922}
     CursorStartPos: {fileID: 7885284947236008841}
     CursorEndPos: {fileID: 912855914833024577}
+    IsMakingQTE: 0
   _secondWeaponDurabilityBar:
     BarGameObject: {fileID: 7783408583798160887}
     DurabilityFillBar: {fileID: 735076580206025848}
@@ -1689,6 +1691,7 @@ MonoBehaviour:
     Cursor: {fileID: 8721172838090648364}
     CursorStartPos: {fileID: 3172020303092270650}
     CursorEndPos: {fileID: 5636069926710730198}
+    IsMakingQTE: 0
 --- !u!50 &8484599583725040527
 Rigidbody2D:
   serializedVersion: 4
