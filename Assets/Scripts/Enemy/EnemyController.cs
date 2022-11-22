@@ -44,7 +44,11 @@ public class EnemyController : Damageable
         base.Update();
         
         MoveToPlayer();
-        AttackPlayer();
+
+        if (_playerController != null)
+        {
+            AttackPlayer();
+        }
     }
 
     #endregion
@@ -57,9 +61,19 @@ public class EnemyController : Damageable
         {
             return;
         }
-        
-        _direction = (_playerController.transform.position - transform.position).normalized;
-        _rigidbody2D.velocity = _direction * _speed;
+
+        if (_playerController != null)
+        {
+            _direction = (_playerController.transform.position - transform.position).normalized;
+            _rigidbody2D.velocity = _direction * _speed;
+        }
+        else
+        {
+            if (_speed >= 0)
+            {
+                _speed *= _speed > 0.05f ? 0.9f : 0;
+            }
+        }
     }
 
     public void GetPushed()
