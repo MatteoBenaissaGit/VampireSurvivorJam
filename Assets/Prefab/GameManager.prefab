@@ -44,3 +44,14 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: f556578333a859146b1649d09e2b7987, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  _timer: 0
+  _spawnPointsList: []
+  _spawnWaves:
+  - SecondsFromTo: {x: 0, y: 0}
+    EnemiesToSpawn: []
+  _spawnList: []
+  _slots: {fileID: 0}
+  _firstUpgradeSlot: {fileID: 0}
+  _secondUpgradeSlot: {fileID: 0}
+  _thirdUpgradeSlot: {fileID: 0}
+  _slotBackground: {fileID: 0}
