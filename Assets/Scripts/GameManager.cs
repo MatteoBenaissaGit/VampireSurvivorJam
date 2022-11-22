@@ -20,6 +20,8 @@ public class GameManager : MonoBehaviour
     [SerializeField] private UpgradeSlot _secondUpgradeSlot;
     [SerializeField] private UpgradeSlot _thirdUpgradeSlot;
     [SerializeField] private Image _slotBackground;
+    [SerializeField] private Sprite _speedIcon;
+    [SerializeField] private Sprite _attackIcon;
 
     private PlayerController _playerController;
 
@@ -162,12 +164,12 @@ public class GameManager : MonoBehaviour
             {
                 _firstUpgradeSlot.gameObject.SetActive(true);
                 string damageText = $"Increase player's damage";
-                SetupSlot(_firstUpgradeSlot, null, damageText,
+                SetupSlot(_firstUpgradeSlot, _attackIcon, damageText,
                     UpgradeType.Player, WeaponUpgradeType.Damage, null, PlayerUpgradeType.Damage);
                 
                 _secondUpgradeSlot.gameObject.SetActive(true);
                 string speedText = $"Increase player's speed";
-                SetupSlot(_secondUpgradeSlot, null, speedText,
+                SetupSlot(_secondUpgradeSlot, _speedIcon, speedText,
                     UpgradeType.Player, WeaponUpgradeType.Damage, null, PlayerUpgradeType.Speed);
 
                 _thirdUpgradeSlot.gameObject.SetActive(false);

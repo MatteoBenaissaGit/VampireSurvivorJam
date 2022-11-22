@@ -1,5 +1,6 @@
 using System;
 using System.Collections;
+using DG.Tweening;
 using UnityEngine;
 using UnityEngine.Events;
 
@@ -15,6 +16,8 @@ public abstract class Damageable : MonoBehaviour
 
     [HideInInspector] public UnityEvent OnLifeChange = new UnityEvent();
 
+    private bool _canBeTouched = true;
+
     protected void Start()
     {
         CurrentLife = Life;
@@ -27,7 +30,7 @@ public abstract class Damageable : MonoBehaviour
 
     public virtual void TakeDamage(float damage)
     {
-        if (IsInvincible)
+        if (IsInvincible || _canBeTouched == false)
         {
             return;
         }
@@ -45,6 +48,12 @@ public abstract class Damageable : MonoBehaviour
     }
 
     protected virtual void Die()
+    {
+        _canBeTouched = false;
+        transform.DOScale(0, 0.5f).OnComplete(DestroyObject);
+    }
+
+    private void DestroyObject()
     {
         Destroy(gameObject);
     }
