@@ -95,6 +95,7 @@ public class PlayerUI : MonoBehaviour
     {
         _experienceBar.DOFillAmount(1, 0.5f).OnComplete(UpdateExperienceUI);
         //effect
+        
     }
 
     private void UpdateMoneyUI()

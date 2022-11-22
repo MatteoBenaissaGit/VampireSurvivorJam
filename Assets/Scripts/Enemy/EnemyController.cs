@@ -26,11 +26,15 @@ public class EnemyController : Damageable
 
     #region Variables
 
+    [Header("Debug")]
+    
     private PlayerController _playerController;
     private Rigidbody2D _rigidbody2D;
     private Vector2 _direction;
     private Vector2 _velocity;
     private bool _isPushed;
+    [ReadOnly] public bool CanMove = true;
+    [ReadOnly] public bool CanAttack = true; 
 
     [SerializeField, ReadOnly] private float _distanceToPlayer;
 
@@ -49,6 +53,10 @@ public class EnemyController : Damageable
         Vector3 baseScale = transform.localScale;
         transform.localScale = Vector3.zero; 
         transform.DOScale(baseScale,1f);
+        
+        //bool
+        CanAttack = true;
+        CanMove = true;
     }
 
     private void Update()
@@ -79,6 +87,12 @@ public class EnemyController : Damageable
 
     private void MoveToPlayer()
     {
+        if (CanMove == false)
+        {
+            _rigidbody2D.velocity = Vector2.zero;
+            return;
+        }
+        
         if (_isPushed)
         {
             return;
@@ -118,6 +132,11 @@ public class EnemyController : Damageable
 
     private void AttackPlayer()
     {
+        if (CanAttack == false)
+        {
+            return;
+        }
+        
         _distanceToPlayer = Vector3.Distance(transform.position, _playerController.transform.position);
         if (_distanceToPlayer < _attackRange)
         {
@@ -129,6 +148,7 @@ public class EnemyController : Damageable
     {
         _playerController.AddExperience(_experienceGiven);
         DropMoney();
+        GameManager.GameManagerInstance.EnemiesInScene.Remove(this);
         
         base.Die();
     }

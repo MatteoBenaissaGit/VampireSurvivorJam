@@ -51,9 +51,10 @@ public class PlayerController : Damageable
     
     //move
     [SerializeField, ReadOnly] private bool _isMoving;
+    [SerializeField, ReadOnly] public bool CanMove = true;
     
     //attack & enemy
-    [SerializeField] private bool _canAttack = true;
+    [SerializeField] public bool CanAttack = true;
     private float _attackTime;
     private List<EnemyController> _enemyInRangeList = new List<EnemyController>();
     private EnemyController _closestEnemy;
@@ -101,6 +102,12 @@ public class PlayerController : Damageable
 
     private void Move()
     {
+        if (CanMove == false)
+        {
+            _rigidbody2D.velocity = Vector2.zero;
+            return;
+        }
+        
         //get input 
         Vector2 movement = new Vector2(Input.GetAxisRaw("Horizontal"), Input.GetAxisRaw("Vertical"));
         const float deadZone = 0.01f;
@@ -150,7 +157,7 @@ public class PlayerController : Damageable
     {
         //cooldown
         _attackTime -= Time.deltaTime;
-        if (_attackTime >= 0 || _canAttack == false || Input.GetMouseButtonDown(0) == false)
+        if (_attackTime >= 0 || CanAttack == false || Input.GetMouseButtonDown(0) == false)
         {
             return;
         }

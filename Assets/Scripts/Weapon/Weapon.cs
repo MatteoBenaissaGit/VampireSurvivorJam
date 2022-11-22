@@ -33,6 +33,11 @@ namespace DefaultNamespace
 
         private void Cooldown()
         {
+            if (GameManager.GameManagerInstance.IsUpgrading)
+            {
+                return;
+            }
+            
             //shoot
             ShootCooldown -= Time.deltaTime;
             if (ShootCooldown <= 0)

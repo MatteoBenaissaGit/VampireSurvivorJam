@@ -24,6 +24,7 @@ public class GameManager : MonoBehaviour
     [SerializeField] private Sprite _attackIcon;
 
     private PlayerController _playerController;
+    [HideInInspector] public List<EnemyController> EnemiesInScene = new List<EnemyController>();
 
     public static GameManager GameManagerInstance;
 
@@ -68,12 +69,18 @@ public class GameManager : MonoBehaviour
     
     private void TimerSpawning()
     {
+        if (IsUpgrading)
+        {
+            return;
+        }
+        
         _timer += Time.deltaTime;
         foreach (SpawnInfo spawn in _spawnList.ToArray())
         {
             if (_timer >= spawn.Time)
             {
-                Instantiate(spawn.Enemy, GetRandomSpawnPoint(), Quaternion.identity);
+                EnemyController enemy = Instantiate(spawn.Enemy, GetRandomSpawnPoint(), Quaternion.identity);
+                EnemiesInScene.Add(enemy);
                 _spawnList.Remove(spawn);
             }
         }
@@ -119,10 +126,22 @@ public class GameManager : MonoBehaviour
         }
     }
 
-    public void HideSlots()
+    private void StopEnemiesAndPlayer()
     {
-        _slots.gameObject.SetActive(false);
-        IsUpgrading = false;
+        _playerController.CanMove = false;
+        _playerController.CanAttack = false;
+        
+        EnemiesInScene.ForEach(x => x.CanAttack = false);
+        EnemiesInScene.ForEach(x => x.CanMove = false);
+    }
+
+    private void RestartEnemiesAndPlayer()
+    {
+        _playerController.CanMove = true;
+        _playerController.CanAttack = true;
+        
+        EnemiesInScene.ForEach(x => x.CanAttack = true);
+        EnemiesInScene.ForEach(x => x.CanMove = true);
     }
     
     #endregion
@@ -135,6 +154,8 @@ public class GameManager : MonoBehaviour
         _slotBackground.DOFade(0, 0);
         _slotBackground.DOFade(0.5f, 0.5f);
         IsUpgrading = true;
+
+        StopEnemiesAndPlayer();
         
         //setup upgrades
             //if player got weapon
@@ -187,6 +208,13 @@ public class GameManager : MonoBehaviour
         slot.WeaponUpgrade = weaponUpgrade;
         slot.PlayerUpgrade = playerUpgrade;
         slot.Set();
+    }
+    
+    public void HideSlots()
+    {
+        _slots.gameObject.SetActive(false);
+        IsUpgrading = false;
+        RestartEnemiesAndPlayer();
     }
 
     #endregion

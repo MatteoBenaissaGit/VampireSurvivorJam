@@ -19,7 +19,10 @@ public class ShockWave : Damager
     {
         base.Move();
 
-        _rigidbody2D.velocity = ParentDamageable.GetComponent<Rigidbody2D>().velocity;
+        if (ParentDamageable != null)
+        {
+            _rigidbody2D.velocity = ParentDamageable.GetComponent<Rigidbody2D>().velocity;
+        }
     }
 
     protected override void DamageEnemy(Damageable damageable)
