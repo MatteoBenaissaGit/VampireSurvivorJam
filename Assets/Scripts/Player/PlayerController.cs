@@ -40,12 +40,18 @@ public class PlayerController : Damageable
     [SerializeField] private MMF_Player _hurtEffect;
     [SerializeField] private MMF_Player _hitEffect;
     [SerializeField] private MMF_Player _moneyEffect;
+    [SerializeField] private MMF_Player _getWeaponEffect;
+    [SerializeField] private MMF_Player _breakWeaponEffect;
+    [Space(5)]
+    [SerializeField] private MMF_Player _soundWaveEffect;
+    [SerializeField] private MMF_Player _nailEffect;
+    [SerializeField] private MMF_Player _sawEffect;
 
     #endregion
 
     #region Variables
 
-    [Header("Debug")]
+    [Space(15) ,Header("Debug")]
     //references
     private Rigidbody2D _rigidbody2D;
     
@@ -194,6 +200,8 @@ public class PlayerController : Damageable
             
                 Damager projectile = Instantiate(weapon.WeaponInfo.Projectile, spawnPosition, Quaternion.identity);
                 projectile.Set(shootDirection, this, weapon.WeaponInfo.Damage);
+                
+                weapon.ShootEffect.PlayFeedbacks();
             }
         }
     }
@@ -213,9 +221,24 @@ public class PlayerController : Damageable
                 if (CurrentWeaponList.Find(x => x.WeaponDataReference == objectWeapon.WeaponData) == false &&
                     CurrentWeaponList.Count < 2)
                 {
+                    _getWeaponEffect.PlayFeedbacks();
+                    
                     Weapon weapon = gameObject.AddComponent<Weapon>();
                     weapon.WeaponDataReference = objectWeapon.WeaponData;
+                    switch (weapon.WeaponDataReference.Id)
+                    {
+                        case "NailPistol" :
+                            weapon.ShootEffect = _nailEffect;
+                            break;
+                        case "Speaker" :
+                            weapon.ShootEffect = _soundWaveEffect;
+                            break;
+                        case "DiskLauncher" :
+                            weapon.ShootEffect = _sawEffect;
+                            break;
+                    }
                     weapon.Set();
+                    
                     CurrentWeaponList.Add(weapon);
                     AddMoney(-objectWeapon.WeaponData.MoneyCost);
                     Destroy(objectWeapon.gameObject);
@@ -231,8 +254,9 @@ public class PlayerController : Damageable
         }
     }
 
-    private void LoseWeapon(Weapon weapon)
+    public void LoseWeapon(Weapon weapon)
     {
+        _breakWeaponEffect.PlayFeedbacks();
         CurrentWeaponList.Remove(weapon);
     }
 

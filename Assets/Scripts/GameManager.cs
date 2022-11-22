@@ -27,6 +27,9 @@ public class GameManager : MonoBehaviour
     [HideInInspector] public List<EnemyController> EnemiesInScene = new List<EnemyController>();
 
     public static GameManager GameManagerInstance;
+    
+    [Header("References")]
+    [SerializeField] private MMF_Player _selectUpgradeEffect;
 
     [Header("Debug")] 
     [ReadOnly] public bool IsUpgrading = false;
@@ -214,6 +217,7 @@ public class GameManager : MonoBehaviour
     {
         _slots.gameObject.SetActive(false);
         IsUpgrading = false;
+        _selectUpgradeEffect.PlayFeedbacks();
         RestartEnemiesAndPlayer();
     }
 

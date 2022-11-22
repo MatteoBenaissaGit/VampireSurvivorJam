@@ -27,7 +27,7 @@ public class PlayerUI : MonoBehaviour
     
     [Header("Effets")]
     [SerializeField] private MMF_Player _launchQTE;
-    [SerializeField] private MMF_Player _quitQTE;
+    [SerializeField] private MMF_Player _breakQTE;
     [SerializeField] private float _zoomAmplitude = 1f;
 
     [Header("Reference")] 
@@ -209,10 +209,10 @@ public class PlayerUI : MonoBehaviour
 
     private void LoseQTE(WeaponDurabilityBar bar, int count)
     {
-        _quitQTE.PlayFeedbacks();
+        _breakQTE.PlayFeedbacks();
         _zoom = false;
         
-        _instance.CurrentWeaponList.Remove(_instance.CurrentWeaponList[count]);
+        _instance.LoseWeapon(_instance.CurrentWeaponList[count]);
         bar.IsMakingQTE = false;
         bar.QteGameObject.SetActive(false);
         bar.BarGameObject.SetActive(false);
@@ -220,7 +220,7 @@ public class PlayerUI : MonoBehaviour
 
     private void WinQTE(WeaponDurabilityBar bar, int count)
     {
-        _quitQTE.PlayFeedbacks();
+        _launchQTE.PlayFeedbacks();
         _zoom = false;
         
         _instance.CurrentWeaponList[count].DurabilityTimer = 0;

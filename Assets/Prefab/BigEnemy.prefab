@@ -84,6 +84,7 @@ MonoBehaviour:
   FeedbacksList:
   - rid: 5363232410119438355
   - rid: 5363232410119438359
+  - rid: 8342851758411218955
   KeepPlayModeChanges: 0
   PerformanceMode: 0
   ForceStopFeedbacksOnDisable: 1
@@ -207,6 +208,50 @@ MonoBehaviour:
         AllowAdditivePlays: 0
         DetermineScaleOnPlay: 0
         DestinationScale: 2
+    - rid: 8342851758411218955
+      type: {class: MMF_Sound, ns: MoreMountains.Feedbacks, asm: MoreMountains.Feedbacks.MMTools}
+      data:
+        Active: 1
+        UniqueID: 1396097691
+        Label: Sound
+        Channel: 0
+        Chance: 100
+        DisplayColor: {r: 0, g: 0, b: 0, a: 1}
+        Timing:
+          TimescaleMode: 0
+          ExcludeFromHoldingPauses: 0
+          ContributeToTotalDuration: 1
+          InitialDelay: 0
+          CooldownDuration: 0
+          InterruptsOnStop: 1
+          NumberOfRepeats: 0
+          RepeatForever: 0
+          DelayBetweenRepeats: 1
+          MMFeedbacksDirectionCondition: 0
+          PlayDirection: 0
+          ConstantIntensity: 0
+          UseIntensityInterval: 0
+          IntensityIntervalMin: 0
+          IntensityIntervalMax: 0
+          Sequence: {fileID: 0}
+          TrackID: 0
+          Quantized: 0
+          TargetBPM: 120
+        Owner: {fileID: 6958469749670040459}
+        DebugActive: 0
+        Sfx: {fileID: 8300000, guid: 536d1368bfee7f14d96b1fe9926ace61, type: 3}
+        RandomSfx: []
+        TestPlayButton:
+          ButtonText: Debug Play Sound
+        TestStopButton:
+          ButtonText: Debug Stop Sound
+        PlayMethod: 2
+        PoolSize: 10
+        MinVolume: 0.1
+        MaxVolume: 0.1
+        MinPitch: 1
+        MaxPitch: 1
+        SfxAudioMixerGroup: {fileID: 0}
 --- !u!1 &3809034368371071549
 GameObject:
   m_ObjectHideFlags: 0
@@ -414,6 +459,8 @@ MonoBehaviour:
   _moneyGiven: 15
   _moneyPrefab: {fileID: 4597350373763718263, guid: 49a8c093ee76e1a4c9cc0dd21326535f, type: 3}
   _hurtEffect: {fileID: 6958469749670040459}
+  CanMove: 1
+  CanAttack: 1
   _distanceToPlayer: 0
 --- !u!114 &5721237461589754046
 MonoBehaviour:

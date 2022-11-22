@@ -1,4 +1,5 @@
 ﻿using System;
+using MoreMountains.Feedbacks;
 using UnityEngine;
 
 namespace DefaultNamespace
@@ -10,6 +11,8 @@ namespace DefaultNamespace
         public bool CanShoot;
         [ReadOnly] public float ShootCooldown;
         [ReadOnly] public float DurabilityTimer;
+        public MMF_Player ShootEffect;
+
 
         public void Set()
         {
