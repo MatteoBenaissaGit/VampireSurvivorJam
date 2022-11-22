@@ -6,7 +6,7 @@ using UnityEngine;
 using UnityEngine.EventSystems;
 using UnityEngine.UI;
 
-public class UpgradeSlot : MonoBehaviour, IPointerClickHandler
+public class UpgradeSlot : MonoBehaviour
 {
     [Header("References")] 
     [SerializeField] private TextMeshProUGUI _text;
@@ -21,6 +21,7 @@ public class UpgradeSlot : MonoBehaviour, IPointerClickHandler
 
     private Vector3 _baseScale;
     private Tween _tween = null;
+    private bool _isHover;
     
     //to set
     [HideInInspector] public Sprite Icon;
@@ -44,8 +45,14 @@ public class UpgradeSlot : MonoBehaviour, IPointerClickHandler
         transform.DOScale(_baseScale, 0.5f);
     }
 
+    private void Update()
+    {
+        OnClick();
+    }
+
     private void OnMouseOver()
     {
+        _isHover = true;
         _tween = transform.DOScale(_baseScale + Vector3.one*0.5f, 0.2f);
     }
     
@@ -54,14 +61,18 @@ public class UpgradeSlot : MonoBehaviour, IPointerClickHandler
     {
         if (_tween != null)
         {
+            _isHover = false;
             _tween = transform.DOScale(_baseScale, 0.2f);
         }
     }
 
-    public void OnPointerClick(PointerEventData eventData)
+    public void OnClick()
     {
-        ApplyUpgrade();
-        GameManager.GameManagerInstance.HideSlots();
+        if (_isHover && Input.GetMouseButtonDown(0))
+        {
+            ApplyUpgrade();
+            GameManager.GameManagerInstance.HideSlots();
+        }
     }
 
     private void ApplyUpgrade()

@@ -1896,6 +1896,10 @@ PrefabInstance:
       propertyPath: _spawnPointsList.Array.data[3]
       value: 
       objectReference: {fileID: 1548274110}
+    - target: {fileID: 5521012526418495778, guid: b5eefc0b1a01fe645b152855f0d8d55d, type: 3}
+      propertyPath: managedReferences[5363232410119438354].ForceSetActiveOnPlay
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 9098510681574778682, guid: b5eefc0b1a01fe645b152855f0d8d55d, type: 3}
       propertyPath: m_RootOrder
       value: 0
