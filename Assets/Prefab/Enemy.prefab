@@ -243,7 +243,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: cc792dcce632444469a78c71b6ce22f5, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  Life: 20
+  Life: 10
   InvincibilityTimeAfterHit: 0
   CurrentLife: 0
   IsInvincible: 0
