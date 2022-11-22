@@ -253,7 +253,7 @@ MonoBehaviour:
   _speed: 2.1
   _attackDamage: 5
   _attackRange: 1.85
-  _experienceGiven: 30
+  _experienceGiven: 10
   _moneyGiven: 100
   _moneyPrefab: {fileID: 4597350373763718263, guid: 49a8c093ee76e1a4c9cc0dd21326535f, type: 3}
 --- !u!114 &5721237461589754046

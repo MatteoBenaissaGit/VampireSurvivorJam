@@ -12,5 +12,6 @@ namespace DefaultNamespace
         public Damager Projectile;
         public float Cooldown;
         public int MoneyCost;
+        public float DurabilitySeconds;
     }
 }

@@ -54,7 +54,7 @@ public class PlayerController : Damageable
     private EnemyController _closestEnemy;
     
     //weapons
-    [SerializeField, ReadOnly] private List<Weapon> _currentWeaponList = new List<Weapon>();
+    [SerializeField, ReadOnly] public List<Weapon> CurrentWeaponList = new List<Weapon>();
     
     //experience
     [SerializeField, ReadOnly] public int CurrentExperience = 0;
@@ -162,7 +162,7 @@ public class PlayerController : Damageable
     
     private void Shoot()
     {
-        foreach (Weapon weapon in _currentWeaponList)
+        foreach (Weapon weapon in CurrentWeaponList)
         {
             if (weapon.CanShoot == false)
             {
@@ -186,7 +186,7 @@ public class PlayerController : Damageable
 
     #endregion
 
-    #region Pick up Weapon & Money
+    #region Pickup/Remove Weapon & Money
 
     private void PickupWeapon()
     {
@@ -196,11 +196,12 @@ public class PlayerController : Damageable
             ObjectWeapon objectWeapon = hit.collider.gameObject.GetComponent<ObjectWeapon>();
             if (objectWeapon != null && objectWeapon.CanPickUp())
             {
-                if (_currentWeaponList.Find(x => x.WeaponInfoData == objectWeapon.WeaponData) == false)
+                if (CurrentWeaponList.Find(x => x.WeaponInfoData == objectWeapon.WeaponData) == false &&
+                    CurrentWeaponList.Count < 2)
                 {
                     Weapon weapon = gameObject.AddComponent<Weapon>();
                     weapon.WeaponInfoData = objectWeapon.WeaponData;
-                    _currentWeaponList.Add(weapon);
+                    CurrentWeaponList.Add(weapon);
                     AddMoney(-objectWeapon.WeaponData.MoneyCost);
                     Destroy(objectWeapon.gameObject);
                 }
@@ -214,6 +215,17 @@ public class PlayerController : Damageable
             }
         }
     }
+
+    private void LoseWeapon(Weapon weapon)
+    {
+        CurrentWeaponList.Remove(weapon);
+    }
+
+    #endregion
+
+    #region Weapons Durability & QTEs
+
+    
 
     #endregion
 

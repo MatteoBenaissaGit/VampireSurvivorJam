@@ -15,6 +15,8 @@ MonoBehaviour:
   Id: DiskLauncher
   DisplayName: Disk launcher
   PlayerWeaponSprite: {fileID: 0}
+  PlayerWeaponIcon: {fileID: 0}
   Projectile: {fileID: 4006351185527816233, guid: 394391e01faab5b429cf7152dfad4c1a, type: 3}
   Cooldown: 1
   MoneyCost: 600
+  DurabilitySeconds: 30

@@ -14,12 +14,21 @@ public class GameManager : MonoBehaviour
 
     private void Start()
     {
+        HideSpawnPoints();
         CalculateWave();
     }
 
     private void Update()
     {
         TimerSpawning();
+    }
+
+    private void HideSpawnPoints()
+    {
+        foreach (Transform point in _spawnPointsList)
+        {
+            point.localScale = Vector3.zero;
+        }
     }
 
     private void TimerSpawning()
@@ -73,6 +82,23 @@ public class GameManager : MonoBehaviour
             }
         }
     }
+
+    #region Gizmos
+
+#if UNITY_EDITOR
+
+    private void OnDrawGizmos()
+    {
+        Gizmos.color = Color.magenta;
+        foreach (Transform point in _spawnPointsList)
+        {
+            Gizmos.DrawSphere(point.position, 1f);
+        }
+    }
+
+#endif
+
+    #endregion
     
 }
 
