@@ -188,12 +188,12 @@ public class GameManager : MonoBehaviour
                 SetupSlot(_firstUpgradeSlot, _attackIcon, damageText,
                     UpgradeType.Player, WeaponUpgradeType.Damage, null, PlayerUpgradeType.Damage);
                 
-                _secondUpgradeSlot.gameObject.SetActive(true);
+                _thirdUpgradeSlot.gameObject.SetActive(true);
                 string speedText = $"Increase player's speed";
-                SetupSlot(_secondUpgradeSlot, _speedIcon, speedText,
+                SetupSlot(_thirdUpgradeSlot, _speedIcon, speedText,
                     UpgradeType.Player, WeaponUpgradeType.Damage, null, PlayerUpgradeType.Speed);
 
-                _thirdUpgradeSlot.gameObject.SetActive(false);
+                _secondUpgradeSlot.gameObject.SetActive(false);
 
             }
     }

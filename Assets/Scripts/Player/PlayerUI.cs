@@ -95,7 +95,7 @@ public class PlayerUI : MonoBehaviour
     {
         _experienceBar.DOFillAmount(1, 0.5f).OnComplete(UpdateExperienceUI);
         //effect
-        
+        _levelText.transform.DOPunchScale(Vector3.one * 0.5f, 0.3f);
     }
 
     private void UpdateMoneyUI()
