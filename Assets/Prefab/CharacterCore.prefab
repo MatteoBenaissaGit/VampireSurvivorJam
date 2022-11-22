@@ -1389,50 +1389,13 @@ MonoBehaviour:
       m_PersistentCalls:
         m_Calls: []
   DebugActive: 0
-  FeedbacksList:
-  - rid: 5363232410119438353
+  FeedbacksList: []
   KeepPlayModeChanges: 0
   PerformanceMode: 0
   ForceStopFeedbacksOnDisable: 1
   references:
     version: 2
-    RefIds:
-    - rid: 5363232410119438353
-      type: {class: MMF_CameraZoom, ns: MoreMountains.Feedbacks, asm: MoreMountains.Feedbacks}
-      data:
-        Active: 1
-        UniqueID: -2015447192
-        Label: Camera Zoom
-        Channel: 0
-        Chance: 100
-        DisplayColor: {r: 0, g: 0, b: 0, a: 1}
-        Timing:
-          TimescaleMode: 0
-          ExcludeFromHoldingPauses: 0
-          ContributeToTotalDuration: 1
-          InitialDelay: 0
-          CooldownDuration: 0
-          InterruptsOnStop: 1
-          NumberOfRepeats: 0
-          RepeatForever: 0
-          DelayBetweenRepeats: 1
-          MMFeedbacksDirectionCondition: 0
-          PlayDirection: 0
-          ConstantIntensity: 0
-          UseIntensityInterval: 0
-          IntensityIntervalMin: 0
-          IntensityIntervalMax: 0
-          Sequence: {fileID: 0}
-          TrackID: 0
-          Quantized: 0
-          TargetBPM: 120
-        Owner: {fileID: 2133251102618548417}
-        DebugActive: 0
-        ZoomMode: 1
-        ZoomFieldOfView: 7
-        ZoomTransitionDuration: 1
-        ZoomDuration: 1
-        RelativeFieldOfView: 0
+    RefIds: []
 --- !u!1 &5393905537730680328
 GameObject:
   m_ObjectHideFlags: 0
@@ -1683,50 +1646,13 @@ MonoBehaviour:
       m_PersistentCalls:
         m_Calls: []
   DebugActive: 0
-  FeedbacksList:
-  - rid: 5363232410119438353
+  FeedbacksList: []
   KeepPlayModeChanges: 0
   PerformanceMode: 0
   ForceStopFeedbacksOnDisable: 1
   references:
     version: 2
-    RefIds:
-    - rid: 5363232410119438353
-      type: {class: MMF_CameraZoom, ns: MoreMountains.Feedbacks, asm: MoreMountains.Feedbacks}
-      data:
-        Active: 1
-        UniqueID: -2015447192
-        Label: Camera Zoom
-        Channel: 0
-        Chance: 100
-        DisplayColor: {r: 0, g: 0, b: 0, a: 1}
-        Timing:
-          TimescaleMode: 0
-          ExcludeFromHoldingPauses: 0
-          ContributeToTotalDuration: 1
-          InitialDelay: 0
-          CooldownDuration: 0
-          InterruptsOnStop: 1
-          NumberOfRepeats: 0
-          RepeatForever: 0
-          DelayBetweenRepeats: 1
-          MMFeedbacksDirectionCondition: 0
-          PlayDirection: 0
-          ConstantIntensity: 0
-          UseIntensityInterval: 0
-          IntensityIntervalMin: 0
-          IntensityIntervalMax: 0
-          Sequence: {fileID: 0}
-          TrackID: 0
-          Quantized: 0
-          TargetBPM: 120
-        Owner: {fileID: 6202473999920903391}
-        DebugActive: 0
-        ZoomMode: 1
-        ZoomFieldOfView: 6
-        ZoomTransitionDuration: 1
-        ZoomDuration: 1
-        RelativeFieldOfView: 0
+    RefIds: []
 --- !u!1 &7049365342722809713
 GameObject:
   m_ObjectHideFlags: 0
@@ -2427,6 +2353,10 @@ PrefabInstance:
       propertyPath: _experienceBar
       value: 
       objectReference: {fileID: 8594698045117567120}
+    - target: {fileID: 1651045689868647382, guid: b71890f5c20e8d847aaebdd59fc53067, type: 3}
+      propertyPath: _cinemachineVirtualCamera
+      value: 
+      objectReference: {fileID: 9098510680471772092}
     - target: {fileID: 8297113124019512706, guid: b71890f5c20e8d847aaebdd59fc53067, type: 3}
       propertyPath: m_Name
       value: Player
@@ -2904,199 +2834,28 @@ PrefabInstance:
       propertyPath: m_Name
       value: Camera
       objectReference: {fileID: 0}
-    - target: {fileID: 993538559148204091, guid: 1751d08e9d550c1418dc92bc59bfb875, type: 3}
-      propertyPath: orthographic size
-      value: 7
-      objectReference: {fileID: 0}
-    - target: {fileID: 993538559148204228, guid: 1751d08e9d550c1418dc92bc59bfb875, type: 3}
-      propertyPath: m_LocalPosition.x
-      value: 1.014041
-      objectReference: {fileID: 0}
-    - target: {fileID: 993538559148204228, guid: 1751d08e9d550c1418dc92bc59bfb875, type: 3}
-      propertyPath: m_LocalPosition.y
-      value: 6.096879
-      objectReference: {fileID: 0}
-    - target: {fileID: 993538559148204228, guid: 1751d08e9d550c1418dc92bc59bfb875, type: 3}
-      propertyPath: m_LocalPosition.z
-      value: -10.026153
-      objectReference: {fileID: 0}
-    - target: {fileID: 993538559148204228, guid: 1751d08e9d550c1418dc92bc59bfb875, type: 3}
-      propertyPath: m_LocalRotation.w
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 993538559148204228, guid: 1751d08e9d550c1418dc92bc59bfb875, type: 3}
-      propertyPath: m_LocalRotation.x
-      value: -0
-      objectReference: {fileID: 0}
-    - target: {fileID: 993538559148204228, guid: 1751d08e9d550c1418dc92bc59bfb875, type: 3}
-      propertyPath: m_LocalRotation.y
-      value: -0
-      objectReference: {fileID: 0}
-    - target: {fileID: 993538559148204228, guid: 1751d08e9d550c1418dc92bc59bfb875, type: 3}
-      propertyPath: m_LocalRotation.z
-      value: -0
-      objectReference: {fileID: 0}
-    - target: {fileID: 993538559739507629, guid: 1751d08e9d550c1418dc92bc59bfb875, type: 3}
-      propertyPath: m_LocalPosition.x
-      value: 1.014041
-      objectReference: {fileID: 0}
-    - target: {fileID: 993538559739507629, guid: 1751d08e9d550c1418dc92bc59bfb875, type: 3}
-      propertyPath: m_LocalPosition.y
-      value: 6.096879
-      objectReference: {fileID: 0}
-    - target: {fileID: 993538559739507629, guid: 1751d08e9d550c1418dc92bc59bfb875, type: 3}
-      propertyPath: m_LocalPosition.z
-      value: -10.026153
-      objectReference: {fileID: 0}
-    - target: {fileID: 993538559739507629, guid: 1751d08e9d550c1418dc92bc59bfb875, type: 3}
-      propertyPath: m_LocalRotation.w
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 993538559739507629, guid: 1751d08e9d550c1418dc92bc59bfb875, type: 3}
-      propertyPath: m_LocalRotation.x
-      value: -0
-      objectReference: {fileID: 0}
-    - target: {fileID: 993538559739507629, guid: 1751d08e9d550c1418dc92bc59bfb875, type: 3}
-      propertyPath: m_LocalRotation.y
-      value: -0
-      objectReference: {fileID: 0}
-    - target: {fileID: 993538559739507629, guid: 1751d08e9d550c1418dc92bc59bfb875, type: 3}
-      propertyPath: m_LocalRotation.z
-      value: -0
-      objectReference: {fileID: 0}
     - target: {fileID: 993538559739507630, guid: 1751d08e9d550c1418dc92bc59bfb875, type: 3}
       propertyPath: m_Follow
       value: 
       objectReference: {fileID: 9098510681848426620}
-    - target: {fileID: 993538559739507630, guid: 1751d08e9d550c1418dc92bc59bfb875, type: 3}
-      propertyPath: m_LookAt
-      value: 
-      objectReference: {fileID: 0}
-    m_RemovedComponents:
-    - {fileID: 993538558738847257, guid: 1751d08e9d550c1418dc92bc59bfb875, type: 3}
+    m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 1751d08e9d550c1418dc92bc59bfb875, type: 3}
---- !u!1 &9098510680471772094 stripped
-GameObject:
-  m_CorrespondingSourceObject: {fileID: 993538559739507628, guid: 1751d08e9d550c1418dc92bc59bfb875, type: 3}
+--- !u!114 &9098510680471772092 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 993538559739507630, guid: 1751d08e9d550c1418dc92bc59bfb875, type: 3}
   m_PrefabInstance: {fileID: 8326493033481840658}
   m_PrefabAsset: {fileID: 0}
---- !u!114 &7791239213846765739
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 9098510680471772094}
+  m_GameObject: {fileID: 0}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 51662a222e352d74a8ad12e5843f7501, type: 3}
+  m_Script: {fileID: 11500000, guid: 45e653bab7fb20e499bda25e1b646fea, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  Channel: 0
-  ZoomCurve:
-    serializedVersion: 2
-    m_Curve:
-    - serializedVersion: 3
-      time: 0
-      value: 0
-      inSlope: 0
-      outSlope: 0
-      tangentMode: 0
-      weightedMode: 0
-      inWeight: 0
-      outWeight: 0
-    - serializedVersion: 3
-      time: 1
-      value: 1
-      inSlope: 0
-      outSlope: 0
-      tangentMode: 0
-      weightedMode: 0
-      inWeight: 0
-      outWeight: 0
-    m_PreInfinity: 2
-    m_PostInfinity: 2
-    m_RotationOrder: 4
-  TestMode: 0
-  TestFieldOfView: 6
-  TestTransitionDuration: 0.5
-  TestDuration: 0.5
-  TestZoomButton: 0
---- !u!114 &8297133788143241192
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 9098510680471772094}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 00b2d199b96b516448144ab30fb26aed, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  m_ApplyAfter: 0
-  m_ChannelMask: 1
-  m_Gain: 1
-  m_Use2DDistance: 1
-  m_UseCameraSpace: 1
-  m_ReactionSettings:
-    m_SecondaryNoise: {fileID: 0}
-    m_AmplitudeGain: 1
-    m_FrequencyGain: 1
-    m_Duration: 1
-    m_NoiseOffsets: {x: -253.96597, y: -172.06299, z: 913.187}
 --- !u!20 &9098510682069764137 stripped
 Camera:
   m_CorrespondingSourceObject: {fileID: 993538559148204091, guid: 1751d08e9d550c1418dc92bc59bfb875, type: 3}
   m_PrefabInstance: {fileID: 8326493033481840658}
   m_PrefabAsset: {fileID: 0}
---- !u!1 &9098510682069764138 stripped
-GameObject:
-  m_CorrespondingSourceObject: {fileID: 993538559148204088, guid: 1751d08e9d550c1418dc92bc59bfb875, type: 3}
-  m_PrefabInstance: {fileID: 8326493033481840658}
-  m_PrefabAsset: {fileID: 0}
---- !u!114 &8333316735121864356
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 9098510682069764138}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 547ab53f5c5bd8f47958e648c03ed7e9, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  Channel: 0
-  ZoomCurve:
-    serializedVersion: 2
-    m_Curve:
-    - serializedVersion: 3
-      time: 0
-      value: 0
-      inSlope: 0
-      outSlope: 0
-      tangentMode: 0
-      weightedMode: 0
-      inWeight: 0
-      outWeight: 0
-    - serializedVersion: 3
-      time: 1
-      value: 1
-      inSlope: 0
-      outSlope: 0
-      tangentMode: 0
-      weightedMode: 0
-      inWeight: 0
-      outWeight: 0
-    m_PreInfinity: 2
-    m_PostInfinity: 2
-    m_RotationOrder: 4
-  TestMode: 0
-  TestFieldOfView: 30
-  TestTransitionDuration: 0.1
-  TestDuration: 0.05
-  TestZoomButton: 0
 --- !u!4 &9098510682117317138 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 993538559099013632, guid: 1751d08e9d550c1418dc92bc59bfb875, type: 3}

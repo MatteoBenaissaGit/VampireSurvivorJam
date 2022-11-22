@@ -255,7 +255,7 @@ MonoBehaviour:
   _attackDamage: 5
   _attackRange: 1.93
   _experienceGiven: 10
-  _moneyGiven: 100
+  _moneyGiven: 10
   _moneyPrefab: {fileID: 4597350373763718263, guid: 49a8c093ee76e1a4c9cc0dd21326535f, type: 3}
   _hurtEffect: {fileID: 4480262679981008872}
   _distanceToPlayer: 0
