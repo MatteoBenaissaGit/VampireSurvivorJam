@@ -74,7 +74,7 @@ public class GameManager : MonoBehaviour
 
     private Vector3 GetRandomSpawnPoint()
     {
-        return _spawnPointsList[Random.Range(0, _spawnPointsList.Count - 1)].position;
+        return _spawnPointsList[Random.Range(0, _spawnPointsList.Count)].position;
     }
 
     private void CalculateWave()
@@ -130,7 +130,7 @@ public class GameManager : MonoBehaviour
             if (weaponCount > 0)
             {
                 //get a random weapon
-                Weapon weapon = _playerController.CurrentWeaponList[Random.Range(0, weaponCount - 1)];
+                Weapon weapon = _playerController.CurrentWeaponList[Random.Range(0, weaponCount)];
                 
                 _firstUpgradeSlot.gameObject.SetActive(true);
                 string cooldownText = $"Reduce {weapon.WeaponDataReference.DisplayName} cooldown";
