@@ -35,6 +35,9 @@ public class UpgradeSlot : MonoBehaviour, IPointerClickHandler
         _iconImage.sprite = Icon;
         _text.text = Text;
         _baseScale = transform.localScale;
+        
+        transform.localScale = Vector3.zero;
+        transform.DOScale(_baseScale, 0.5f);
     }
 
     private void OnMouseOver()

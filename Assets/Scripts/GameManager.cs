@@ -1,6 +1,7 @@
 using System;
 using System.Collections.Generic;
 using DefaultNamespace;
+using DG.Tweening;
 using UnityEngine;
 using UnityEngine.UI;
 using Random = UnityEngine.Random;
@@ -123,6 +124,8 @@ public class GameManager : MonoBehaviour
     private void ShowUpgrade()
     {
         _slots.SetActive(true);
+        _slotBackground.DOFade(0, 0);
+        _slotBackground.DOFade(0.5f, 0.5f);
         
         //setup upgrades
             //if player got weapon
