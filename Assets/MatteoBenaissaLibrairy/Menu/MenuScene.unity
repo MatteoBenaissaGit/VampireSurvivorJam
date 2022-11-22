@@ -214,9 +214,17 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 3242611111531735655, guid: b10ae47af206b114cbbbfb56def21069, type: 3}
+      propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 3242611112049812520, guid: b10ae47af206b114cbbbfb56def21069, type: 3}
       propertyPath: m_Name
       value: MenuManagerPrefab
+      objectReference: {fileID: 0}
+    - target: {fileID: 3242611112049812521, guid: b10ae47af206b114cbbbfb56def21069, type: 3}
+      propertyPath: _currentMenuType
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 3242611112049812522, guid: b10ae47af206b114cbbbfb56def21069, type: 3}
       propertyPath: m_RootOrder
@@ -266,5 +274,9 @@ PrefabInstance:
       propertyPath: m_Camera
       value: 
       objectReference: {fileID: 519420031}
+    - target: {fileID: 3242611112120363874, guid: b10ae47af206b114cbbbfb56def21069, type: 3}
+      propertyPath: m_IsActive
+      value: 1
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: b10ae47af206b114cbbbfb56def21069, type: 3}
