@@ -20,6 +20,7 @@ public class UpgradeSlot : MonoBehaviour, IPointerClickHandler
     private const float _playerAttackMultiplier = 1.1f;
 
     private Vector3 _baseScale;
+    private Tween _tween = null;
     
     //to set
     [HideInInspector] public Sprite Icon;
@@ -38,14 +39,15 @@ public class UpgradeSlot : MonoBehaviour, IPointerClickHandler
 
     private void OnMouseOver()
     {
-        transform.DOKill();
-        transform.DOScale(_baseScale + Vector3.one*0.5f, 0.2f);
+        _tween = transform.DOScale(_baseScale + Vector3.one*0.5f, 0.2f);
     }
 
     private void OnMouseExit()
     {
-        transform.DOKill();
-        transform.DOScale(_baseScale, 0.2f);
+        if (_tween != null)
+        {
+            _tween = transform.DOScale(_baseScale, 0.2f);
+        }
     }
 
     public void OnPointerClick(PointerEventData eventData)
