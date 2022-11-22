@@ -32,11 +32,11 @@ namespace SceneTransition
 
         private void Update()
         {
-            if (Input.GetKeyDown(KeyCode.LeftArrow)) LaunchTransitionIn(TransitionType.Fade);
-            if (Input.GetKeyDown(KeyCode.RightArrow)) LaunchTransitionOut(TransitionType.Fade);
-            
-            if (Input.GetKeyDown(KeyCode.UpArrow)) LaunchTransitionIn(TransitionType.Size);
-            if (Input.GetKeyDown(KeyCode.DownArrow)) LaunchTransitionOut(TransitionType.Size);
+            // if (Input.GetKeyDown(KeyCode.LeftArrow)) LaunchTransitionIn(TransitionType.Fade);
+            // if (Input.GetKeyDown(KeyCode.RightArrow)) LaunchTransitionOut(TransitionType.Fade);
+            //
+            // if (Input.GetKeyDown(KeyCode.UpArrow)) LaunchTransitionIn(TransitionType.Size);
+            // if (Input.GetKeyDown(KeyCode.DownArrow)) LaunchTransitionOut(TransitionType.Size);
         }
 
         private void SetupActiveTransition(TransitionType transitionType)

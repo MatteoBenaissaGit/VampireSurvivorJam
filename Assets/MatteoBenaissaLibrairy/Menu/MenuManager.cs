@@ -1,4 +1,5 @@
 using System.Collections.Generic;
+using SceneTransition;
 
 namespace Menu
 {
@@ -80,6 +81,10 @@ namespace Menu
         [SerializeField, ReadOnly, Tooltip("The current menu type, debug only !")]
         private MenuType _currentMenuType;
 
+        [Space(10), Header("Transition"), SerializeField]
+        private TransitionManager _transitionManager;
+        [SerializeField] private Transform _character;
+
         //private
 
         private bool _buttonClicked;
@@ -148,6 +153,8 @@ namespace Menu
                         SlideButtonClickAnimation(isPlayButton ?
                             SideSlideMenuReferences.PlayButton.transform :
                             SideSlideMenuReferences.CreditsButton.transform);
+                        _transitionManager.LaunchTransitionIn(TransitionType.Fade);
+                        _character.DOMoveX(transform.position.x - 25, 2f);
                         break;
                 }
             }
@@ -182,6 +189,11 @@ namespace Menu
         }
 
         #endregion
+
+        public void GoToPLayScene()
+        {
+            
+        }
 
     }
 }
