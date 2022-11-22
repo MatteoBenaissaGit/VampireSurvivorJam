@@ -10,13 +10,13 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: f3bf0d52c1ce41cb9a726c6091c41c54, type: 3}
-  m_Name: DiskLauncher
+  m_Name: ShockWave
   m_EditorClassIdentifier: 
-  Id: DiskLauncher
-  DisplayName: Disk launcher
+  Id: ShockWave
+  DisplayName: Shock Wave
   PlayerWeaponSprite: {fileID: 0}
   PlayerWeaponIcon: {fileID: 0}
-  Projectile: {fileID: 4006351185527816233, guid: 394391e01faab5b429cf7152dfad4c1a, type: 3}
-  Cooldown: 3
-  MoneyCost: 600
-  DurabilitySeconds: 30
+  Projectile: {fileID: 776041352617496675, guid: a15ba9a11d0381e409e5daa92de8e929, type: 3}
+  Cooldown: 6
+  MoneyCost: 200
+  DurabilitySeconds: 20
