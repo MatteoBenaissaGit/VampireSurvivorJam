@@ -493,7 +493,7 @@ PrefabInstance:
       objectReference: {fileID: 5446295927443859840}
     - target: {fileID: 3242611112049812521, guid: b10ae47af206b114cbbbfb56def21069, type: 3}
       propertyPath: PlaySceneName
-      value: SampleScene
+      value: SceneLD
       objectReference: {fileID: 0}
     - target: {fileID: 3242611112049812521, guid: b10ae47af206b114cbbbfb56def21069, type: 3}
       propertyPath: _currentMenuType
