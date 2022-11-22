@@ -13,6 +13,8 @@ public class ObjectMoney : MonoBehaviour
     private Rigidbody2D _rigidbody2D;
 
     public bool isPickedUp;
+
+    [SerializeField] private ParticleSystem _moneyParticle;
     
     private void Start()
     {
@@ -36,6 +38,9 @@ public class ObjectMoney : MonoBehaviour
 
     public void GetPickedUp()
     {
+        _moneyParticle.Play();
+        _moneyParticle.transform.SetParent(GameManager.GameManagerInstance.transform);
+        _moneyParticle.transform.localScale = Vector3.one*0.4f;
         isPickedUp = true;
         transform.DOScale(0, 0.3f).OnComplete(DestroyObject);
     }

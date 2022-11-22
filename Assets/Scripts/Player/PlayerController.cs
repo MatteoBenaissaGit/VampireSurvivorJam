@@ -159,7 +159,7 @@ public class PlayerController : Damageable
         Vector2 position = (Vector2)transform.position;
         Vector2 mousePosition = Camera.main.ScreenToWorldPoint(Input.mousePosition);
         Vector2 direction = (mousePosition - position).normalized;
-        Vector2 spawnPosition = position + direction * 2.5f;
+        Vector2 spawnPosition = position + direction * 2f;
         
         Damager attack = Instantiate(_attackPrefab, spawnPosition, Quaternion.identity);
         attack.Set(direction,this, AttackDamage);
