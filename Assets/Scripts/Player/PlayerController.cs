@@ -91,11 +91,6 @@ public class PlayerController : Damageable
         Attack();
     }
 
-    private void OnDestroy()
-    {
-        PlayerControllerInstance = null;
-    }
-
     #endregion
 
     #region Movement & EnemyDetection

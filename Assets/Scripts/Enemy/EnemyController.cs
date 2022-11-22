@@ -1,5 +1,7 @@
 using System;
 using System.Collections;
+using DG.Tweening;
+using Unity.VisualScripting;
 using UnityEngine;
 
 [RequireComponent(typeof(Rigidbody2D))]
@@ -25,6 +27,7 @@ public class EnemyController : Damageable
     private PlayerController _playerController;
     private Rigidbody2D _rigidbody2D;
     private Vector2 _direction;
+    private Vector2 _velocity;
     private bool _isPushed;
 
     #endregion
@@ -37,6 +40,11 @@ public class EnemyController : Damageable
         
         _playerController = PlayerController.PlayerControllerInstance;
         _rigidbody2D = GetComponent<Rigidbody2D>();
+        
+        //Scaling
+        Vector3 baseScale = transform.localScale;
+        transform.localScale = Vector3.zero; 
+        transform.DOScale(baseScale,1f);
     }
 
     private void Update()
@@ -64,8 +72,10 @@ public class EnemyController : Damageable
 
         if (_playerController != null)
         {
-            _direction = (_playerController.transform.position - transform.position).normalized;
-            _rigidbody2D.velocity = _direction * _speed;
+            _direction = (_playerController.transform.position - transform.position);
+            _direction = Vector3.Normalize(_direction);
+            _velocity = _direction * _speed;
+            _rigidbody2D.velocity = _velocity;
         }
         else
         {
