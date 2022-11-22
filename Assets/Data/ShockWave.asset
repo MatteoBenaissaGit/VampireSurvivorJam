@@ -20,4 +20,4 @@ MonoBehaviour:
   Cooldown: 5
   MoneyCost: 200
   Damage: 5
-  DurabilitySeconds: 20
+  DurabilitySeconds: 3

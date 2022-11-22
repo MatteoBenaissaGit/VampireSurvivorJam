@@ -1,5 +1,6 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
+using Cinemachine;
 using UnityEngine;
 using MoreMountains.Feedbacks;
 
@@ -42,6 +43,7 @@ namespace MoreMountains.FeedbacksForThirdParty
 		public TimescaleModes TimescaleMode { get; set; }
         
 		protected Camera _camera;
+		protected CinemachineVirtualCamera _cameraCine;
 		protected float _initialFieldOfView;
 		protected MMCameraZoomModes _mode;
 		protected bool _zooming = false;
@@ -60,6 +62,7 @@ namespace MoreMountains.FeedbacksForThirdParty
 		protected virtual void Awake()
 		{
 			_camera = this.gameObject.GetComponent<Camera>();
+			_cameraCine = GameObject.FindObjectOfType<CinemachineVirtualCamera>();
 			_initialFieldOfView = _camera.fieldOfView;
 		}	
         
@@ -73,10 +76,13 @@ namespace MoreMountains.FeedbacksForThirdParty
 				return;
 			}
 
-			if (_camera.fieldOfView != _targetFieldOfView)
+
+			if (_cameraCine.m_Lens.OrthographicSize != _targetFieldOfView)
 			{
+				LensSettings settings = _cameraCine.m_Lens;
 				_delta += GetDeltaTime() / _transitionDuration;
-				_camera.fieldOfView = Mathf.LerpUnclamped(_startFieldOfView, _targetFieldOfView, ZoomCurve.Evaluate(_delta));
+				settings.OrthographicSize  = Mathf.LerpUnclamped(7, _targetFieldOfView, ZoomCurve.Evaluate(_delta));
+				_cameraCine.m_Lens = settings;
 			}
 			else
 			{

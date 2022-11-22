@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
 using System;
+using Cinemachine;
 using DefaultNamespace;
 using DG.Tweening;
 using MoreMountains.Feedbacks;
@@ -27,11 +28,17 @@ public class PlayerUI : MonoBehaviour
     [Header("Effets")]
     [SerializeField] private MMF_Player _launchQTE;
     [SerializeField] private MMF_Player _quitQTE;
+    [SerializeField] private float _zoomAmplitude = 1f;
 
+    [Header("Reference")] 
+    [SerializeField] private CinemachineVirtualCamera _cinemachineVirtualCamera;
+    
     //QTE
-    float distance;
-    float width;
-    float barSpeedSeconds;
+    private float _distance;
+    private float _width;
+    private float _barSpeedSeconds;
+
+    private bool _zoom;
 
     private void Start()
     {
@@ -65,6 +72,8 @@ public class PlayerUI : MonoBehaviour
     {
         UpdateBar(_firstWeaponDurabilityBar, 0);
         UpdateBar(_secondWeaponDurabilityBar, 1);
+
+        Zoom();
     }
 
     #region Life, Experience and Money
@@ -136,6 +145,7 @@ public class PlayerUI : MonoBehaviour
                 {
                     //launch QTE
                     bar.IsMakingQTE = true;
+                    _zoom = true;
                     _launchQTE.PlayFeedbacks();
                 }
             }
@@ -162,23 +172,23 @@ public class PlayerUI : MonoBehaviour
         {
             bar.QteGameObject.SetActive(true);
             
-            distance = (float)Random.Range(25,75)/100;
-            width = (float)Random.Range(15,25)/100;
-            barSpeedSeconds = (float)Random.Range(3,5);
+            _distance = (float)Random.Range(25,75)/100;
+            _width = (float)Random.Range(15,25)/100;
+            _barSpeedSeconds = (float)Random.Range(3,5);
 
-            bar.TopImage.fillAmount = distance;
-            bar.MiddleImage.fillAmount = distance + width;
+            bar.TopImage.fillAmount = _distance;
+            bar.MiddleImage.fillAmount = _distance + _width;
 
             Vector3 cursorPosition = bar.Cursor.transform.localPosition;
             bar.Cursor.transform.localPosition = new Vector3(cursorStartX, cursorPosition.y, cursorPosition.z);
-            bar.Cursor.transform.DOLocalMoveX(cursorEndX, barSpeedSeconds);
+            bar.Cursor.transform.DOLocalMoveX(cursorEndX, _barSpeedSeconds);
         }
         
         //press space
         float currentCursorPosition = (bar.Cursor.transform.localPosition.x - cursorStartX) / (cursorEndX - cursorStartX);
         if (Input.GetKeyDown(KeyCode.Space))
         {
-            if (currentCursorPosition >= distance && currentCursorPosition <= distance + width)
+            if (currentCursorPosition >= _distance && currentCursorPosition <= _distance + _width)
             {
                 WinQTE(bar,count);
             }
@@ -199,6 +209,7 @@ public class PlayerUI : MonoBehaviour
     private void LoseQTE(WeaponDurabilityBar bar, int count)
     {
         _quitQTE.PlayFeedbacks();
+        _zoom = false;
         
         _instance.CurrentWeaponList.Remove(_instance.CurrentWeaponList[count]);
         bar.IsMakingQTE = false;
@@ -209,11 +220,20 @@ public class PlayerUI : MonoBehaviour
     private void WinQTE(WeaponDurabilityBar bar, int count)
     {
         _quitQTE.PlayFeedbacks();
-
+        _zoom = false;
+        
         _instance.CurrentWeaponList[count].DurabilityTimer = 0;
         bar.IsMakingQTE = false;
         bar.QteGameObject.SetActive(false);
 
+    }
+
+    private void Zoom()
+    {
+        float size = _cinemachineVirtualCamera.m_Lens.OrthographicSize;
+        _cinemachineVirtualCamera.m_Lens.OrthographicSize = _zoom ? 
+            Mathf.Lerp(size,7f - _zoomAmplitude,0.1f) :
+            Mathf.Lerp(size,7f,0.1f);
     }
 
     #endregion
