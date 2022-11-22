@@ -10,6 +10,7 @@ GameObject:
   m_Component:
   - component: {fileID: 3733536605258381169}
   - component: {fileID: 3733536605258381168}
+  - component: {fileID: 2269874246733637145}
   m_Layer: 0
   m_Name: GameManager
   m_TagString: Untagged
@@ -44,3 +45,46 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: f556578333a859146b1649d09e2b7987, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  _timer: 0
+  _spawnPointsList:
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  _spawnWaves:
+  - SecondsFromTo: {x: 3, y: 10}
+    EnemiesToSpawn:
+    - Enemy: {fileID: 7865264895468926245, guid: d71743fdf1cf8da4096743e5348900aa, type: 3}
+      Number: 5
+  - SecondsFromTo: {x: 12, y: 20}
+    EnemiesToSpawn:
+    - Enemy: {fileID: 7865264895468926245, guid: d71743fdf1cf8da4096743e5348900aa, type: 3}
+      Number: 3
+    - Enemy: {fileID: 7865264895468926245, guid: 8738487fecb9c824889f2449c55de057, type: 3}
+      Number: 3
+  _spawnList: []
+  _slots: {fileID: 0}
+  _firstUpgradeSlot: {fileID: 0}
+  _secondUpgradeSlot: {fileID: 0}
+  _thirdUpgradeSlot: {fileID: 0}
+  _slotBackground: {fileID: 0}
+--- !u!114 &2269874246733637145
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3733536605258381170}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 8f7de9ef06f04864391a928af29f4b46, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  NormalTimescale: 1
+  DefaultLerpSpeed: 1
+  DefaultLerpTimescale: 0
+  CurrentTimeScale: 1
+  TargetTimeScale: 1
+  LerpTimescale: 1
+  LerpSpeed: 0
+  TestButton: 0

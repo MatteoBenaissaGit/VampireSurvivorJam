@@ -2,6 +2,7 @@ using System;
 using System.Collections.Generic;
 using System.Linq;
 using DefaultNamespace;
+using MoreMountains.Feedbacks;
 using UnityEngine;
 using UnityEngine.Events;
 
@@ -36,6 +37,7 @@ public class PlayerController : Damageable
     
     [Header("References")] 
     [SerializeField] private Damager _attackPrefab;
+    [SerializeField] private MMF_Player _hitEffect;
 
     #endregion
 
@@ -235,6 +237,10 @@ public class PlayerController : Damageable
 
     public override void TakeDamage(float damage)
     {
+        if (IsInvincible == false)
+        {
+            _hitEffect.PlayFeedbacks();
+        }
         base.TakeDamage(damage);
     }
 
