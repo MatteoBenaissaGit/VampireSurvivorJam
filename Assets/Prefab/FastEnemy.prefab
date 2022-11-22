@@ -451,16 +451,16 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: cc792dcce632444469a78c71b6ce22f5, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  Life: 40
+  Life: 20
   InvincibilityTimeAfterHit: 0
   CurrentLife: 0
   IsInvincible: 0
   OnLifeChange:
     m_PersistentCalls:
       m_Calls: []
-  _speed: 2.79
+  _speed: 4
   _attackDamage: 5
-  _attackRange: 1.85
+  _attackRange: 2.5
   _experienceGiven: 20
   _moneyGiven: 15
   _moneyPrefab: {fileID: 4597350373763718263, guid: 49a8c093ee76e1a4c9cc0dd21326535f, type: 3}
