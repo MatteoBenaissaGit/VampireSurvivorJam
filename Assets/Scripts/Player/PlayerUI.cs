@@ -126,7 +126,8 @@ public class PlayerUI : MonoBehaviour
             if (fillAmount >= 1)
             {
                 //avoid both QTE at same time
-                if (_firstWeaponDurabilityBar.IsMakingQTE == false && _secondWeaponDurabilityBar.IsMakingQTE == false)
+                if (_firstWeaponDurabilityBar.IsMakingQTE == false && _secondWeaponDurabilityBar.IsMakingQTE == false && 
+                    GameManager.GameManagerInstance.IsUpgrading == false)
                 {
                     //launch QTE
                     bar.IsMakingQTE = true;

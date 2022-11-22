@@ -173,7 +173,7 @@ public class PlayerController : Damageable
         {
             if (weapon.CanShoot == false)
             {
-                return;
+                continue;
             }
 
             weapon.ShootCooldown = weapon.WeaponInfo.Cooldown;

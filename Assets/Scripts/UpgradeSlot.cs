@@ -30,11 +30,15 @@ public class UpgradeSlot : MonoBehaviour, IPointerClickHandler
     [HideInInspector] public Weapon Weapon;
     [HideInInspector] public PlayerUpgradeType PlayerUpgrade;
 
+    private void Start()
+    {
+        _baseScale = transform.localScale;
+    }
+
     public void Set()
     {
         _iconImage.sprite = Icon;
         _text.text = Text;
-        _baseScale = transform.localScale;
         
         transform.localScale = Vector3.zero;
         transform.DOScale(_baseScale, 0.5f);
@@ -44,6 +48,7 @@ public class UpgradeSlot : MonoBehaviour, IPointerClickHandler
     {
         _tween = transform.DOScale(_baseScale + Vector3.one*0.5f, 0.2f);
     }
+    
 
     private void OnMouseExit()
     {

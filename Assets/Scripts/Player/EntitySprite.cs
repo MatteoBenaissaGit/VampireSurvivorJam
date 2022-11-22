@@ -20,8 +20,11 @@ public class EntitySprite : MonoBehaviour
 
     private void Update()
     {
-        bool invert = _rigidbody2D.velocity.x <= 0;
-        _spriteRenderer.transform.DOScaleX(invert ? -_scaleX : _scaleX, 0.3f);
+        if (_rigidbody2D.velocity.magnitude > 0.1f)
+        {
+            bool invert = _rigidbody2D.velocity.x <= 0;
+            _spriteRenderer.transform.DOScaleX(invert ? -_scaleX : _scaleX, 0.3f);
+        }
     }
 
     private void ScaleDown()

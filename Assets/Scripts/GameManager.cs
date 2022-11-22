@@ -24,6 +24,9 @@ public class GameManager : MonoBehaviour
 
     public static GameManager GameManagerInstance;
 
+    [Header("Debug")] 
+    [ReadOnly] public bool IsUpgrading = false;
+
     private void Awake()
     {
         GameManagerInstance = this;
@@ -116,6 +119,7 @@ public class GameManager : MonoBehaviour
     public void HideSlots()
     {
         _slots.gameObject.SetActive(false);
+        IsUpgrading = false;
     }
     
     #endregion
@@ -127,6 +131,7 @@ public class GameManager : MonoBehaviour
         _slots.SetActive(true);
         _slotBackground.DOFade(0, 0);
         _slotBackground.DOFade(0.5f, 0.5f);
+        IsUpgrading = true;
         
         //setup upgrades
             //if player got weapon
