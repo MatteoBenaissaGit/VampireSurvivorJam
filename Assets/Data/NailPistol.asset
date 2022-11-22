@@ -14,8 +14,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   Id: NailPistol
   DisplayName: Nail pistol
-  PlayerWeaponSprite: {fileID: 0}
-  PlayerWeaponIcon: {fileID: 0}
+  PlayerWeaponSprite: {fileID: 21300000, guid: acbf369467e6c264b8e9a9f9746675b6, type: 3}
+  PlayerWeaponIcon: {fileID: 21300000, guid: acbf369467e6c264b8e9a9f9746675b6, type: 3}
   Projectile: {fileID: 425504579701849938, guid: f814c40998b38f0499967ddbf29a0253, type: 3}
   Cooldown: 1
   MoneyCost: 400

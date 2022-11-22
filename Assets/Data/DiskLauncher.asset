@@ -14,10 +14,10 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   Id: DiskLauncher
   DisplayName: Disk launcher
-  PlayerWeaponSprite: {fileID: 0}
-  PlayerWeaponIcon: {fileID: 0}
+  PlayerWeaponSprite: {fileID: 21300000, guid: 77e106c1f2019f945b0e40703a345338, type: 3}
+  PlayerWeaponIcon: {fileID: 21300000, guid: 77e106c1f2019f945b0e40703a345338, type: 3}
   Projectile: {fileID: 4006351185527816233, guid: 394391e01faab5b429cf7152dfad4c1a, type: 3}
   Cooldown: 3
   MoneyCost: 600
   Damage: 10
-  DurabilitySeconds: 30
+  DurabilitySeconds: 40

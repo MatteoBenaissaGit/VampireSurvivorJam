@@ -130,7 +130,7 @@ public class PlayerUI : MonoBehaviour
                 bar.BarGameObject.transform.localScale = Vector3.zero;
                 bar.BarGameObject.transform.DOScale(baseScale, 0.3f);
                 
-                bar.Icon.sprite ??= weapon.WeaponDataReference.PlayerWeaponIcon;
+                bar.Icon.sprite = weapon.WeaponDataReference.PlayerWeaponIcon;
             }
 
             float fillAmount = weapon.DurabilityTimer / weapon.WeaponInfo.DurabilitySeconds;

@@ -6,7 +6,7 @@ using UnityEngine;
 
 public class EntitySprite : MonoBehaviour
 {
-    [SerializeField] private SpriteRenderer _spriteRenderer;
+    [SerializeField] private GameObject _sprite;
 
     private Rigidbody2D _rigidbody2D;
     private float _scaleX;
@@ -14,7 +14,7 @@ public class EntitySprite : MonoBehaviour
     private void Start()
     {
         _rigidbody2D = GetComponent<Rigidbody2D>();
-        _scaleX = _spriteRenderer.transform.localScale.x;
+        _scaleX = _sprite.transform.localScale.x;
         ScaleDown();
     }
 
@@ -23,18 +23,18 @@ public class EntitySprite : MonoBehaviour
         if (_rigidbody2D.velocity.magnitude > 0.1f)
         {
             bool invert = _rigidbody2D.velocity.x <= 0;
-            _spriteRenderer.transform.DOScaleX(invert ? -_scaleX : _scaleX, 0.3f);
+            _sprite.transform.DOScaleX(invert ? -_scaleX : _scaleX, 0.3f);
         }
     }
 
     private void ScaleDown()
     {
-        _spriteRenderer.transform.DOScaleY(_spriteRenderer.transform.localScale.y - 0.02f, 0.1f).OnComplete(ScaleUp);
+        _sprite.transform.DOScaleY(_sprite.transform.localScale.y - 0.02f, 0.1f).OnComplete(ScaleUp);
     }
 
     private void ScaleUp()
     {
-        _spriteRenderer.transform.DOScaleY(_spriteRenderer.transform.localScale.y + 0.02f, 0.1f).OnComplete(ScaleDown);
+        _sprite.transform.DOScaleY(_sprite.transform.localScale.y + 0.02f, 0.1f).OnComplete(ScaleDown);
 
     }
 }
