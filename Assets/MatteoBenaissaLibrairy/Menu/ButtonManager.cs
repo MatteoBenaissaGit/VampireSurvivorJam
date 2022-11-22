@@ -13,7 +13,7 @@ namespace Menu
     {
         [Header("Parameters")]
         
-        [SerializeField, Range(0,2)]
+        [SerializeField, Range(0,50)]
         private float animationRange = .25f;
         
         [SerializeField, Range(0,2)]
