@@ -329,9 +329,9 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 514198071}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 2.174, y: 13.9772, z: 0}
-  m_LocalScale: {x: 24, y: 14.1, z: 1}
-  m_ConstrainProportionsScale: 0
+  m_LocalPosition: {x: 0.2, y: 6.8, z: 0}
+  m_LocalScale: {x: 2.9, y: 1.5452294, z: 0.35935566}
+  m_ConstrainProportionsScale: 1
   m_Children: []
   m_Father: {fileID: 1878006316}
   m_RootOrder: 0
@@ -377,12 +377,12 @@ SpriteRenderer:
   m_SortingLayerID: 0
   m_SortingLayer: 0
   m_SortingOrder: -10
-  m_Sprite: {fileID: -1925207651, guid: ce16c4669d4ed264baee78936d7792a7, type: 3}
+  m_Sprite: {fileID: 21300000, guid: 31bce5ed117fbe94da3cb37fc55deaa1, type: 3}
   m_Color: {r: 0.4811321, g: 0.4811321, b: 0.4811321, a: 1}
   m_FlipX: 0
   m_FlipY: 0
   m_DrawMode: 2
-  m_Size: {x: 5, y: 5}
+  m_Size: {x: 30.6, y: 42.8}
   m_AdaptiveModeThreshold: 0.5
   m_SpriteTileMode: 0
   m_WasSpriteAssigned: 1
@@ -2024,6 +2024,14 @@ PrefabInstance:
     - target: {fileID: 9098510682069764137, guid: b5eefc0b1a01fe645b152855f0d8d55d, type: 3}
       propertyPath: orthographic size
       value: 7
+      objectReference: {fileID: 0}
+    - target: {fileID: 9098510682069764310, guid: b5eefc0b1a01fe645b152855f0d8d55d, type: 3}
+      propertyPath: m_LocalPosition.x
+      value: 1.014041
+      objectReference: {fileID: 0}
+    - target: {fileID: 9098510682069764310, guid: b5eefc0b1a01fe645b152855f0d8d55d, type: 3}
+      propertyPath: m_LocalPosition.y
+      value: 6.096879
       objectReference: {fileID: 0}
     - target: {fileID: 9098510682069764310, guid: b5eefc0b1a01fe645b152855f0d8d55d, type: 3}
       propertyPath: m_LocalPosition.z
