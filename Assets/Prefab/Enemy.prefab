@@ -25,7 +25,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 2117951112108846383}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalPosition: {x: 0, y: 0.42, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -253,7 +253,7 @@ MonoBehaviour:
       m_Calls: []
   _speed: 2.1
   _attackDamage: 5
-  _attackRange: 1.79
+  _attackRange: 1.93
   _experienceGiven: 10
   _moneyGiven: 100
   _moneyPrefab: {fileID: 4597350373763718263, guid: 49a8c093ee76e1a4c9cc0dd21326535f, type: 3}
@@ -307,7 +307,7 @@ CapsuleCollider2D:
   m_IsTrigger: 0
   m_UsedByEffector: 0
   m_UsedByComposite: 0
-  m_Offset: {x: -0.0012719631, y: -0.5118234}
+  m_Offset: {x: -0.0012719631, y: -0.06}
   m_Size: {x: 0.97197104, y: 1.0194898}
   m_Direction: 0
 --- !u!1 &8080644985117756027
@@ -335,7 +335,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 8080644985117756027}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -0.01, y: -1.01, z: 0}
+  m_LocalPosition: {x: -0.01, y: -0.5899999, z: 0}
   m_LocalScale: {x: 1.1603, y: 0.4978, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []

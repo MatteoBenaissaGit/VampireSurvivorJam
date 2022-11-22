@@ -5,6 +5,7 @@ using UnityEngine.UI;
 using System;
 using DefaultNamespace;
 using DG.Tweening;
+using MoreMountains.Feedbacks;
 using TMPro;
 using Random = UnityEngine.Random;
 
@@ -22,6 +23,10 @@ public class PlayerUI : MonoBehaviour
     
     private Damageable _playerDamageable;
     private PlayerController _instance;
+    
+    [Header("Effets")]
+    [SerializeField] private MMF_Player _launchQTE;
+    [SerializeField] private MMF_Player _quitQTE;
 
     //QTE
     float distance;
@@ -131,6 +136,7 @@ public class PlayerUI : MonoBehaviour
                 {
                     //launch QTE
                     bar.IsMakingQTE = true;
+                    _launchQTE.PlayFeedbacks();
                 }
             }
         }
@@ -192,6 +198,8 @@ public class PlayerUI : MonoBehaviour
 
     private void LoseQTE(WeaponDurabilityBar bar, int count)
     {
+        _quitQTE.PlayFeedbacks();
+        
         _instance.CurrentWeaponList.Remove(_instance.CurrentWeaponList[count]);
         bar.IsMakingQTE = false;
         bar.QteGameObject.SetActive(false);
@@ -200,6 +208,8 @@ public class PlayerUI : MonoBehaviour
 
     private void WinQTE(WeaponDurabilityBar bar, int count)
     {
+        _quitQTE.PlayFeedbacks();
+
         _instance.CurrentWeaponList[count].DurabilityTimer = 0;
         bar.IsMakingQTE = false;
         bar.QteGameObject.SetActive(false);

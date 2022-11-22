@@ -216,10 +216,10 @@ public class PlayerController : Damageable
             }
             
             ObjectMoney objectMoney = hit.collider.gameObject.GetComponent<ObjectMoney>();
-            if (objectMoney != null)
+            if (objectMoney != null && objectMoney.isPickedUp == false)
             {
                 AddMoney(objectMoney.Value);
-                Destroy(objectMoney.gameObject);
+                objectMoney.GetPickedUp();
             }
         }
     }
