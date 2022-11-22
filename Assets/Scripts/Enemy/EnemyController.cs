@@ -102,14 +102,14 @@ public class EnemyController : Damageable
         _isPushed = true;
         StartCoroutine(ResetPush());
         
-        const float pushForce = 15f;
+        const float pushForce = 10f;
         Vector2 force = -_direction * pushForce;
         _rigidbody2D.velocity = force;
     }
 
     private IEnumerator ResetPush()
     {
-        yield return new WaitForSeconds(0.4f);
+        yield return new WaitForSeconds(0.3f);
         _isPushed = false;
     }
 

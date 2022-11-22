@@ -38,6 +38,8 @@ public class PlayerController : Damageable
     [Header("References")] 
     [SerializeField] private Damager _attackPrefab;
     [SerializeField] private MMF_Player _hurtEffect;
+    [SerializeField] private MMF_Player _hitEffect;
+    [SerializeField] private MMF_Player _moneyEffect;
 
     #endregion
 
@@ -161,6 +163,8 @@ public class PlayerController : Damageable
         
         Damager attack = Instantiate(_attackPrefab, spawnPosition, Quaternion.identity);
         attack.Set(direction,this, AttackDamage);
+        
+        _hitEffect.PlayFeedbacks();
     }
     
     private void Shoot()
@@ -273,6 +277,7 @@ public class PlayerController : Damageable
     {
         int newMoney = CurrentMoney + money;
         CurrentMoney = newMoney >= 0 ? newMoney : 0;
+        _moneyEffect.PlayFeedbacks();
         OnMoneyChange.Invoke();
     }
 
