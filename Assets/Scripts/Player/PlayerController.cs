@@ -5,6 +5,7 @@ using DefaultNamespace;
 using MoreMountains.Feedbacks;
 using UnityEngine;
 using UnityEngine.Events;
+using UnityEngine.SceneManagement;
 
 [RequireComponent(typeof(Rigidbody2D))]
 [RequireComponent(typeof(CapsuleCollider2D))]
@@ -103,6 +104,12 @@ public class PlayerController : Damageable
     }
 
     #endregion
+
+    protected override void DestroyObject()
+    {
+        base.DestroyObject();
+        SceneManager.LoadScene("MenuScene");
+    }
 
     #region Movement & EnemyDetection
 

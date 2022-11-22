@@ -53,7 +53,7 @@ public abstract class Damageable : MonoBehaviour
         transform.DOScale(0, 0.5f).OnComplete(DestroyObject);
     }
 
-    private void DestroyObject()
+    protected virtual void DestroyObject()
     {
         Destroy(gameObject);
     }
