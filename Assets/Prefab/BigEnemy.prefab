@@ -170,8 +170,10 @@ MonoBehaviour:
   _attackDamage: 15
   _attackRange: 1.85
   _experienceGiven: 60
-  _moneyGiven: 250
+  _moneyGiven: 15
   _moneyPrefab: {fileID: 4597350373763718263, guid: 49a8c093ee76e1a4c9cc0dd21326535f, type: 3}
+  _hurtEffect: {fileID: 0}
+  _distanceToPlayer: 0
 --- !u!114 &5721237461589754046
 MonoBehaviour:
   m_ObjectHideFlags: 0
