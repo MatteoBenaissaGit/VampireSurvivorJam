@@ -170,7 +170,6 @@ public class PlayerController : Damageable
                 return;
             }
 
-            Debug.Log(weapon.WeaponInfo.Cooldown);
             weapon.ShootCooldown = weapon.WeaponInfo.Cooldown;
 
             //shoot
