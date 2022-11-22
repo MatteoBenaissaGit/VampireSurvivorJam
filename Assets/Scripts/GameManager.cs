@@ -75,7 +75,8 @@ public class GameManager : MonoBehaviour
 
     private Vector3 GetRandomSpawnPoint()
     {
-        return _spawnPointsList[Random.Range(0, _spawnPointsList.Count)].position;
+        Vector3 spawnPointPosition = _spawnPointsList[Random.Range(0, _spawnPointsList.Count)].position;
+        return new Vector3(spawnPointPosition.x, spawnPointPosition.y,0);
     }
 
     private void CalculateWave()

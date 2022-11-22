@@ -30,6 +30,8 @@ public class EnemyController : Damageable
     private Vector2 _velocity;
     private bool _isPushed;
 
+    [SerializeField, ReadOnly] private float _distanceToPlayer;
+
     #endregion
 
     #region UnityEngine Methods
@@ -104,7 +106,8 @@ public class EnemyController : Damageable
 
     private void AttackPlayer()
     {
-        if (Vector3.Distance(transform.position, _playerController.transform.position) < _attackRange)
+        _distanceToPlayer = Vector3.Distance(transform.position, _playerController.transform.position);
+        if (_distanceToPlayer < _attackRange)
         {
             _playerController.GetComponent<Damageable>().TakeDamage(_attackDamage);
         }
