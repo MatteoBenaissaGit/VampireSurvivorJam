@@ -37,7 +37,7 @@ public abstract class Damager : MonoBehaviour
         
     }
     
-    protected void Update()
+    protected virtual void Update()
     {
         Move();
     }

@@ -14,10 +14,10 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   Id: ShockWave
   DisplayName: Shock Wave
-  PlayerWeaponSprite: {fileID: 0}
-  PlayerWeaponIcon: {fileID: 0}
+  PlayerWeaponSprite: {fileID: -221591985, guid: cae573bbe80b3284dbd7af61b1d367cb, type: 3}
+  PlayerWeaponIcon: {fileID: -221591985, guid: cae573bbe80b3284dbd7af61b1d367cb, type: 3}
   Projectile: {fileID: 776041352617496675, guid: a15ba9a11d0381e409e5daa92de8e929, type: 3}
   Cooldown: 5
   MoneyCost: 200
   Damage: 5
-  DurabilitySeconds: 3
+  DurabilitySeconds: 30

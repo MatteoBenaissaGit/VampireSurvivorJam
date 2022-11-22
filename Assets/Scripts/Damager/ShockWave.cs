@@ -10,7 +10,8 @@ public class ShockWave : Damager
     {
         base.Start();
         transform.position = ParentDamageable.transform.position;
-        transform.DOScale(10, _attackDuration);
+        transform.DOScale(transform.localScale * 10, _attackDuration);
+        transform.rotation = Quaternion.Euler(Vector3.zero);
         StartCoroutine(EndShockWave());
     }
 
