@@ -30,10 +30,14 @@ public class UpgradeSlot : MonoBehaviour
     [HideInInspector] public WeaponUpgradeType WeaponUpgrade;
     [HideInInspector] public Weapon Weapon;
     [HideInInspector] public PlayerUpgradeType PlayerUpgrade;
+    
+    //cooldown
+    [SerializeField, ReadOnly] private float _canClickCooldown;
 
     private void Awake()
     {
         _baseScale = transform.localScale;
+        _canClickCooldown = 1f;
     }
 
     public void Set()
@@ -45,12 +49,13 @@ public class UpgradeSlot : MonoBehaviour
         transform.localScale = Vector3.zero;
         
         transform.DOScale(_baseScale, 0.5f);
-
+        _canClickCooldown = 1f;
     }
 
     private void Update()
     {
         OnClick();
+        _canClickCooldown -= Time.deltaTime;
     }
 
     private void OnMouseOver()
@@ -71,7 +76,7 @@ public class UpgradeSlot : MonoBehaviour
 
     public void OnClick()
     {
-        if (_isHover && Input.GetMouseButtonDown(0))
+        if (_canClickCooldown <= 0 && _isHover && Input.GetMouseButtonDown(0))
         {
             ApplyUpgrade();
             GameManager.GameManagerInstance.HideSlots();
